@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>$title · $name</title>
+  <meta name="description" content="$description">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" href="${prefix}assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="$stylesheet">
+  $head
+</head>
+<body class="$body_class" data-page="$page">
+  <a class="skip" href="#main">跳转到正文</a>
+  <header>
+    <div class="masthead">
+      <a class="brand" href="${prefix}index.html">$name</a>
+      <nav class="nav" aria-label="主导航">$navigation</nav>
+    </div>
+  </header>
+  <div class="layout">
+    <aside class="sidebar" aria-label="$sidebar_label">$sidebar</aside>
+    <main id="main">$main</main>
+  </div>
+  <footer><div class="footer-inner">
+    <span>$name · 公开学习记录</span>
+    <span>笔记与资料 · 保留原作者署名</span>
+  </div></footer>
+  $scripts
+</body>
+</html>

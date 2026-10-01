@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="300" viewBox="0 0 260 300">
+  <defs>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#315e58" stroke-opacity=".1" stroke-width=".7"/></pattern>
+    <linearGradient id="paper" x2="1" y2="1"><stop stop-color="#e8f0e8"/><stop offset="1" stop-color="#f4efdf"/></linearGradient>
+  </defs>
+  <rect x="20" y="24" width="220" height="248" rx="110" fill="url(#paper)"/>
+  <rect x="20" y="24" width="220" height="248" rx="110" fill="url(#grid)"/>
+  <circle cx="132" cy="150" r="83" fill="none" stroke="#436b61" stroke-opacity=".24" stroke-dasharray="3 7"/>
+  <ellipse cx="132" cy="150" rx="107" ry="45" transform="rotate(-38 132 150)" fill="none" stroke="#3c7065" stroke-width="1.2"/>
+  <path d="M48 210L189 94M62 84L194 228" fill="none" stroke="#3c7065" stroke-opacity=".38"/>
+  <path d="M48 210L149 124L189 94" fill="none" stroke="#c48b40" stroke-width="2"/>
+  <circle cx="132" cy="150" r="8" fill="#285c52"/>
+  <circle cx="189" cy="94" r="6" fill="#c48b40"/>
+  <circle cx="48" cy="210" r="5" fill="#285c52"/>
+  <circle cx="194" cy="228" r="4" fill="#6d9387"/>
+  <circle cx="62" cy="84" r="4" fill="#6d9387"/>
+  <text x="151" y="184" font-family="Georgia,serif" font-size="29" font-style="italic" fill="#315e58">V</text>
+  <text x="203" y="87" font-family="Georgia,serif" font-size="17" font-style="italic" fill="#9a6b33">e</text>
+  <text x="212" y="91" font-family="Georgia,serif" font-size="10" fill="#9a6b33">1</text>
+  <path d="M222 29v16M214 37h16M33 262v12M27 268h12" stroke="#bf9256" stroke-width="1"/>
+</svg>

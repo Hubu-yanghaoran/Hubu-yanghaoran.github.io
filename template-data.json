@@ -1,0 +1,284 @@
+[
+  {
+    "name": "A5-Notes",
+    "style": "A5小册子、宽外边距、黑白定理。",
+    "engine": "pdfLaTeX",
+    "source": "https://github.com/ming-suhi/LaTex-Notes-Template"
+  },
+  {
+    "name": "AcademTeX-Course",
+    "style": "课程笔记与作业共享排版。",
+    "engine": "pdfLaTeX",
+    "source": "https://github.com/AcademTeX/course-repo-template"
+  },
+  {
+    "name": "BeautyNote",
+    "style": "中文彩色笔记和定理布局。",
+    "engine": "XeLaTeX",
+    "source": "https://github.com/BeautyLaTeX/beautynote"
+  },
+  {
+    "name": "Chinese-Technical-Template",
+    "style": "正式中文技术报告、封面目录。",
+    "engine": "XeLaTeX",
+    "source": "https://github.com/cmyk-labs/chinese-latex-template"
+  },
+  {
+    "name": "ChineseLaTeXTemplate",
+    "style": "中文文章、平台字体配置。",
+    "engine": "XeLaTeX",
+    "source": "https://github.com/Shincey/ChineseLatexTemplate"
+  },
+  {
+    "name": "Cionx-Lecture-Notes",
+    "style": "Libertinus书籍式数学讲义。",
+    "engine": "LuaLaTeX（建议先查.latexmkrc）",
+    "source": "https://github.com/cionx/Lecture-Notes-Template"
+  },
+  {
+    "name": "ClassicThesis",
+    "style": "古典书籍字体与留白。",
+    "engine": "pdfLaTeX",
+    "source": "https://mirrors.ctan.org/macros/latex/contrib/classicthesis.zip"
+  },
+  {
+    "name": "CodexTemplate",
+    "style": "极简长文和短文。",
+    "engine": "LuaLaTeX",
+    "source": "https://github.com/TheoNDionne/CodexTemplate"
+  },
+  {
+    "name": "Colorist-Lebhart-Beaulivre",
+    "style": "彩色学术文章与书籍。",
+    "engine": "XeLaTeX/LuaLaTeX",
+    "source": "https://github.com/Jinwen-XU/colorist"
+  },
+  {
+    "name": "Cornell-Notes",
+    "style": "提示、正文、页末总结。",
+    "engine": "pdfLaTeX",
+    "source": "https://github.com/dszv/cornell-notes-template"
+  },
+  {
+    "name": "Coursework-LaTeX",
+    "style": "宽右边栏、浅灰题框、浅金例题框。",
+    "engine": "XeLaTeX/LuaLaTeX/pdfLaTeX",
+    "source": "https://github.com/jopetty/coursework-latex"
+  },
+  {
+    "name": "Eisvogel",
+    "style": "现代技术文档与代码排版。",
+    "engine": "Pandoc + LaTeX",
+    "source": "https://github.com/Wandmalfarbe/pandoc-latex-template"
+  },
+  {
+    "name": "Elegant-Notebook",
+    "style": "可切换字体与多套配色。",
+    "engine": "按compile.sh指定引擎",
+    "source": "https://github.com/xinli12/elegant-notebook-latex"
+  },
+  {
+    "name": "ElegantBook",
+    "style": "彩色章节与定理、教材风格。",
+    "engine": "XeLaTeX",
+    "source": "https://github.com/ElegantLaTeX/ElegantBook"
+  },
+  {
+    "name": "ElegantNote",
+    "style": "短篇清爽中文笔记。",
+    "engine": "XeLaTeX",
+    "source": "https://github.com/ElegantLaTeX/ElegantNote"
+  },
+  {
+    "name": "Gua927-Math-Note",
+    "style": "封面、背景与数学环境。",
+    "engine": "XeLaTeX",
+    "source": "https://github.com/Gua927/Latex_Template"
+  },
+  {
+    "name": "kaobook",
+    "style": "宽页边、边注与边栏图。",
+    "engine": "pdfLaTeX（上游示例）",
+    "source": "https://github.com/fmarotta/kaobook"
+  },
+  {
+    "name": "Kinginu-Lecture-Notes",
+    "style": "Tufte侧栏、术语翻译与索引。",
+    "engine": "按仓库latexmk/Docker配置",
+    "source": "https://github.com/kinginu/latex-lecture-notes-template"
+  },
+  {
+    "name": "KOMA-Template",
+    "style": "传统克制的学术长文。",
+    "engine": "pdfLaTeX",
+    "source": "https://github.com/novoid/LaTeX-KOMA-template"
+  },
+  {
+    "name": "Kurabirko-Lecture-Notes",
+    "style": "分层多文件课程讲义。",
+    "engine": "pdfLaTeX（建议）",
+    "source": "https://github.com/kurabirko/latex-lecture-note-template"
+  },
+  {
+    "name": "LaTeX-ToolKit",
+    "style": "可定制理工科文章与报告。",
+    "engine": "XeLaTeX/LuaLaTeX",
+    "source": "https://github.com/Willie169/LaTeX-ToolKit"
+  },
+  {
+    "name": "LaTeXto-Lecture-Notes",
+    "style": "朴素A4黑白课程笔记。",
+    "engine": "pdfLaTeX",
+    "source": "https://latex.to/templates/lecture-notes/"
+  },
+  {
+    "name": "Lecture-Notes-Class",
+    "style": "课堂信息与结构化讲义。",
+    "engine": "LuaLaTeX",
+    "source": "https://github.com/vhbelvadi/LaTeX-lecture-notes-class"
+  },
+  {
+    "name": "Lectures",
+    "style": "课程讲义与示例环境。",
+    "engine": "按README及类文件确认",
+    "source": "https://github.com/LucaCappelletti94/lectures"
+  },
+  {
+    "name": "Legrand-Orange-Book",
+    "style": "橙色章标题与完整教材。",
+    "engine": "pdfLaTeX",
+    "source": "https://github.com/yuki/the-Legrand-orange-book"
+  },
+  {
+    "name": "Loom-Notes",
+    "style": "织物封面、靛蓝配色、侧栏与填空练习。",
+    "engine": "XeLaTeX",
+    "source": "https://github.com/Polaris-Aeterna/loom-notes"
+  },
+  {
+    "name": "Lumina",
+    "style": "彩色数学讲义与章节。",
+    "engine": "pdfLaTeX",
+    "source": "https://github.com/sohamch08/lumina"
+  },
+  {
+    "name": "Markdown-Cornell-Notes",
+    "style": "康奈尔分栏与总结带。",
+    "engine": "Make + Python3 + Pandoc + pdfLaTeX",
+    "source": "https://github.com/forloop11/markdown-cornell-notes"
+  },
+  {
+    "name": "Math-Notes-Template",
+    "style": "CJK数学笔记、教程与生成器。",
+    "engine": "按Makefile/latexmk配置",
+    "source": "https://github.com/syhily/math-notes-template"
+  },
+  {
+    "name": "Mattynaz-Notes",
+    "style": "灰框、彩框、线框、卡片与边注。",
+    "engine": "pdfLaTeX（建议）",
+    "source": "https://github.com/mattynaz/latex-notes"
+  },
+  {
+    "name": "Mimosis",
+    "style": "克制现代学术书籍。",
+    "engine": "XeLaTeX/LuaLaTeX",
+    "source": "https://github.com/Pseudomanifold/latex-mimosis"
+  },
+  {
+    "name": "Minimalist-Einfart-Simplivre",
+    "style": "极简学术文章与书籍。",
+    "engine": "XeLaTeX/LuaLaTeX",
+    "source": "https://github.com/Jinwen-XU/minimalist"
+  },
+  {
+    "name": "Modern-Class-Notes",
+    "style": "彩色定理、教学提示、多配色。",
+    "engine": "按示例；中文用XeLaTeX",
+    "source": "https://github.com/aurghya-0/Modern-Class-Notes-Latex"
+  },
+  {
+    "name": "NoteBeamer",
+    "style": "课件缩略图加批注区。",
+    "engine": "按notebeamer-demo.tex确认",
+    "source": "https://github.com/myhsia/notebeamer"
+  },
+  {
+    "name": "NotesTeX",
+    "style": "原版宽边栏、旁注、数学笔记。",
+    "engine": "按原版示例配置",
+    "source": "https://github.com/Adhumunt/NotesTeX"
+  },
+  {
+    "name": "NovaForge",
+    "style": "中文知识点栏、公式框、例题练习。",
+    "engine": "XeLaTeX",
+    "source": "https://github.com/SiriusFzh/NovaForge"
+  },
+  {
+    "name": "Our-NotesTeX-Bilingual",
+    "style": "保留原NotesTeX样式的中英版。",
+    "engine": "XeLaTeX/LuaLaTeX",
+    "source": "https://github.com/Adhumunt/NotesTeX"
+  },
+  {
+    "name": "QYXF-book",
+    "style": "中文课程讲义、多套配色。",
+    "engine": "XeLaTeX",
+    "source": "https://mirrors.ctan.org/macros/latex/contrib/qyxf-book.zip"
+  },
+  {
+    "name": "Rahulk64-Lecture-Notes",
+    "style": "数学与计算机讲义。",
+    "engine": "按教程配置",
+    "source": "https://github.com/rahulk64/lecture-notes"
+  },
+  {
+    "name": "Sakura-Notes",
+    "style": "和纸与樱花主题。",
+    "engine": "XeLaTeX/LuaLaTeX",
+    "source": "https://github.com/Tchniber1/Latex-templates"
+  },
+  {
+    "name": "Sara-Lecture-Notes",
+    "style": "简洁数学统计课程讲义。",
+    "engine": "pdfLaTeX（建议）",
+    "source": "https://github.com/sara-venkatraman/LaTeX-Templates"
+  },
+  {
+    "name": "Scientific-Style-Book",
+    "style": "学术书籍、章小目录、索引与术语表。",
+    "engine": "LuaLaTeX + latexmk",
+    "source": "https://github.com/Jue-Xu/Latex-Template-for-Scientific-Style-Book"
+  },
+  {
+    "name": "SuBook",
+    "style": "书籍封面、章节与学术结构。",
+    "engine": "XeLaTeX",
+    "source": "https://github.com/ChangxingSu/subook"
+  },
+  {
+    "name": "Tufte-LaTeX",
+    "style": "经典宽边栏、边注与边栏图。",
+    "engine": "pdfLaTeX",
+    "source": "https://github.com/Tufte-LaTeX/tufte-latex"
+  },
+  {
+    "name": "Whatsnote",
+    "style": "笔记类样式与示例。",
+    "engine": "按demo及README确认",
+    "source": "https://github.com/myhsia/whatsnote"
+  },
+  {
+    "name": "WisdomFusion-Templates",
+    "style": "中文文章、书籍与英文笔记。",
+    "engine": "XeLaTeX",
+    "source": "https://github.com/WisdomFusion/latex-templates"
+  },
+  {
+    "name": "YZ-Cai-Homework",
+    "style": "中英文封面、题号与解答。",
+    "engine": "XeLaTeX",
+    "source": "https://github.com/YZ-Cai/LatexHomeworkTemplate"
+  }
+]

@@ -1,0 +1,335 @@
+{
+  "checked_at": "2026-10-01T09:37:29.425435+00:00",
+  "scope": "Public entry point reachability; compilation is not verified.",
+  "results": [
+    {
+      "name": "A5-Notes",
+      "source": "https://github.com/ming-suhi/LaTex-Notes-Template",
+      "status": 200,
+      "final_url": "https://github.com/ming-suhi/LaTex-Notes-Template",
+      "state": "reachable"
+    },
+    {
+      "name": "AcademTeX-Course",
+      "source": "https://github.com/AcademTeX/course-repo-template",
+      "status": 200,
+      "final_url": "https://github.com/AcademTeX/course-repo-template",
+      "state": "reachable"
+    },
+    {
+      "name": "BeautyNote",
+      "source": "https://github.com/BeautyLaTeX/beautynote",
+      "status": 200,
+      "final_url": "https://github.com/BeautyLaTeX/beautynote",
+      "state": "reachable"
+    },
+    {
+      "name": "Chinese-Technical-Template",
+      "source": "https://github.com/cmyk-labs/chinese-latex-template",
+      "status": 200,
+      "final_url": "https://github.com/cmyk-labs/chinese-latex-template",
+      "state": "reachable"
+    },
+    {
+      "name": "ChineseLaTeXTemplate",
+      "source": "https://github.com/Shincey/ChineseLatexTemplate",
+      "status": 200,
+      "final_url": "https://github.com/Shincey/ChineseLatexTemplate",
+      "state": "reachable"
+    },
+    {
+      "name": "Cionx-Lecture-Notes",
+      "source": "https://github.com/cionx/Lecture-Notes-Template",
+      "status": 200,
+      "final_url": "https://github.com/cionx/Lecture-Notes-Template",
+      "state": "reachable"
+    },
+    {
+      "name": "ClassicThesis",
+      "source": "https://mirrors.ctan.org/macros/latex/contrib/classicthesis.zip",
+      "status": 200,
+      "final_url": "https://ctan.math.illinois.edu/macros/latex/contrib/classicthesis.zip",
+      "state": "reachable"
+    },
+    {
+      "name": "CodexTemplate",
+      "source": "https://github.com/TheoNDionne/CodexTemplate",
+      "status": 200,
+      "final_url": "https://github.com/TheoNDionne/CodexTemplate",
+      "state": "reachable"
+    },
+    {
+      "name": "Colorist-Lebhart-Beaulivre",
+      "source": "https://github.com/Jinwen-XU/colorist",
+      "status": 200,
+      "final_url": "https://github.com/Jinwen-XU/colorist",
+      "state": "reachable"
+    },
+    {
+      "name": "Cornell-Notes",
+      "source": "https://github.com/dszv/cornell-notes-template",
+      "status": 200,
+      "final_url": "https://github.com/dszv/cornell-notes-template",
+      "state": "reachable"
+    },
+    {
+      "name": "Coursework-LaTeX",
+      "source": "https://github.com/jopetty/coursework-latex",
+      "status": 200,
+      "final_url": "https://github.com/jopetty/coursework-latex",
+      "state": "reachable"
+    },
+    {
+      "name": "Eisvogel",
+      "source": "https://github.com/Wandmalfarbe/pandoc-latex-template",
+      "status": 200,
+      "final_url": "https://github.com/Wandmalfarbe/pandoc-latex-template",
+      "state": "reachable"
+    },
+    {
+      "name": "Elegant-Notebook",
+      "source": "https://github.com/xinli12/elegant-notebook-latex",
+      "status": 200,
+      "final_url": "https://github.com/xinli12/elegant-notebook-latex",
+      "state": "reachable"
+    },
+    {
+      "name": "ElegantBook",
+      "source": "https://github.com/ElegantLaTeX/ElegantBook",
+      "status": 200,
+      "final_url": "https://github.com/ElegantLaTeX/ElegantBook",
+      "state": "reachable"
+    },
+    {
+      "name": "ElegantNote",
+      "source": "https://github.com/ElegantLaTeX/ElegantNote",
+      "status": 200,
+      "final_url": "https://github.com/ElegantLaTeX/ElegantNote",
+      "state": "reachable"
+    },
+    {
+      "name": "Gua927-Math-Note",
+      "source": "https://github.com/Gua927/Latex_Template",
+      "status": 200,
+      "final_url": "https://github.com/Gua927/Latex_Template",
+      "state": "reachable"
+    },
+    {
+      "name": "kaobook",
+      "source": "https://github.com/fmarotta/kaobook",
+      "status": 200,
+      "final_url": "https://github.com/fmarotta/kaobook",
+      "state": "reachable"
+    },
+    {
+      "name": "Kinginu-Lecture-Notes",
+      "source": "https://github.com/kinginu/latex-lecture-notes-template",
+      "status": 200,
+      "final_url": "https://github.com/kinginu/latex-lecture-notes-template",
+      "state": "reachable"
+    },
+    {
+      "name": "KOMA-Template",
+      "source": "https://github.com/novoid/LaTeX-KOMA-template",
+      "status": 200,
+      "final_url": "https://github.com/novoid/LaTeX-KOMA-template",
+      "state": "reachable"
+    },
+    {
+      "name": "Kurabirko-Lecture-Notes",
+      "source": "https://github.com/kurabirko/latex-lecture-note-template",
+      "status": 200,
+      "final_url": "https://github.com/kurabirko/latex-lecture-note-template",
+      "state": "reachable"
+    },
+    {
+      "name": "LaTeX-ToolKit",
+      "source": "https://github.com/Willie169/LaTeX-ToolKit",
+      "status": 200,
+      "final_url": "https://github.com/Willie169/LaTeX-ToolKit",
+      "state": "reachable"
+    },
+    {
+      "name": "LaTeXto-Lecture-Notes",
+      "source": "https://latex.to/templates/lecture-notes/",
+      "status": 200,
+      "final_url": "https://latex.to/templates/lecture-notes/",
+      "state": "reachable"
+    },
+    {
+      "name": "Lecture-Notes-Class",
+      "source": "https://github.com/vhbelvadi/LaTeX-lecture-notes-class",
+      "status": 200,
+      "final_url": "https://github.com/vhbelvadi/LaTeX-lecture-notes-class",
+      "state": "reachable"
+    },
+    {
+      "name": "Lectures",
+      "source": "https://github.com/LucaCappelletti94/lectures",
+      "status": 200,
+      "final_url": "https://github.com/LucaCappelletti94/lectures",
+      "state": "reachable"
+    },
+    {
+      "name": "Legrand-Orange-Book",
+      "source": "https://github.com/yuki/the-Legrand-orange-book",
+      "status": 200,
+      "final_url": "https://github.com/yuki/the-Legrand-orange-book",
+      "state": "reachable"
+    },
+    {
+      "name": "Loom-Notes",
+      "source": "https://github.com/Polaris-Aeterna/loom-notes",
+      "status": 200,
+      "final_url": "https://github.com/Polaris-Aeterna/loom-notes",
+      "state": "reachable"
+    },
+    {
+      "name": "Lumina",
+      "source": "https://github.com/sohamch08/lumina",
+      "status": 200,
+      "final_url": "https://github.com/sohamch08/lumina",
+      "state": "reachable"
+    },
+    {
+      "name": "Markdown-Cornell-Notes",
+      "source": "https://github.com/forloop11/markdown-cornell-notes",
+      "status": 200,
+      "final_url": "https://github.com/forloop11/markdown-cornell-notes",
+      "state": "reachable"
+    },
+    {
+      "name": "Math-Notes-Template",
+      "source": "https://github.com/syhily/math-notes-template",
+      "status": 200,
+      "final_url": "https://github.com/syhily/math-notes-template",
+      "state": "reachable"
+    },
+    {
+      "name": "Mattynaz-Notes",
+      "source": "https://github.com/mattynaz/latex-notes",
+      "status": 200,
+      "final_url": "https://github.com/mattynaz/latex-notes",
+      "state": "reachable"
+    },
+    {
+      "name": "Mimosis",
+      "source": "https://github.com/Pseudomanifold/latex-mimosis",
+      "status": 200,
+      "final_url": "https://github.com/Pseudomanifold/latex-mimosis",
+      "state": "reachable"
+    },
+    {
+      "name": "Minimalist-Einfart-Simplivre",
+      "source": "https://github.com/Jinwen-XU/minimalist",
+      "status": 200,
+      "final_url": "https://github.com/Jinwen-XU/minimalist",
+      "state": "reachable"
+    },
+    {
+      "name": "Modern-Class-Notes",
+      "source": "https://github.com/aurghya-0/Modern-Class-Notes-Latex",
+      "status": 200,
+      "final_url": "https://github.com/aurghya-0/Modern-Class-Notes-Latex",
+      "state": "reachable"
+    },
+    {
+      "name": "NoteBeamer",
+      "source": "https://github.com/myhsia/notebeamer",
+      "status": 200,
+      "final_url": "https://github.com/myhsia/notebeamer",
+      "state": "reachable"
+    },
+    {
+      "name": "NotesTeX",
+      "source": "https://github.com/Adhumunt/NotesTeX",
+      "status": 200,
+      "final_url": "https://github.com/Adhumunt/NotesTeX",
+      "state": "reachable"
+    },
+    {
+      "name": "NovaForge",
+      "source": "https://github.com/SiriusFzh/NovaForge",
+      "status": 200,
+      "final_url": "https://github.com/SiriusFzh/NovaForge",
+      "state": "reachable"
+    },
+    {
+      "name": "Our-NotesTeX-Bilingual",
+      "source": "https://github.com/Adhumunt/NotesTeX",
+      "status": 200,
+      "final_url": "https://github.com/Adhumunt/NotesTeX",
+      "state": "reachable"
+    },
+    {
+      "name": "QYXF-book",
+      "source": "https://mirrors.ctan.org/macros/latex/contrib/qyxf-book.zip",
+      "status": 200,
+      "final_url": "https://mirrors.ibiblio.org/pub/mirrors/CTAN/macros/latex/contrib/qyxf-book.zip",
+      "state": "reachable"
+    },
+    {
+      "name": "Rahulk64-Lecture-Notes",
+      "source": "https://github.com/rahulk64/lecture-notes",
+      "status": 200,
+      "final_url": "https://github.com/rahulk64/lecture-notes",
+      "state": "reachable"
+    },
+    {
+      "name": "Sakura-Notes",
+      "source": "https://github.com/Tchniber1/Latex-templates",
+      "status": 200,
+      "final_url": "https://github.com/Tchniber1/Latex-templates",
+      "state": "reachable"
+    },
+    {
+      "name": "Sara-Lecture-Notes",
+      "source": "https://github.com/sara-venkatraman/LaTeX-Templates",
+      "status": 200,
+      "final_url": "https://github.com/sara-venkatraman/LaTeX-Templates",
+      "state": "reachable"
+    },
+    {
+      "name": "Scientific-Style-Book",
+      "source": "https://github.com/Jue-Xu/Latex-Template-for-Scientific-Style-Book",
+      "status": 200,
+      "final_url": "https://github.com/Jue-Xu/Latex-Template-for-Scientific-Style-Book",
+      "state": "reachable"
+    },
+    {
+      "name": "SuBook",
+      "source": "https://github.com/ChangxingSu/subook",
+      "status": 200,
+      "final_url": "https://github.com/ChangxingSu/subook",
+      "state": "reachable"
+    },
+    {
+      "name": "Tufte-LaTeX",
+      "source": "https://github.com/Tufte-LaTeX/tufte-latex",
+      "status": 200,
+      "final_url": "https://github.com/Tufte-LaTeX/tufte-latex",
+      "state": "reachable"
+    },
+    {
+      "name": "Whatsnote",
+      "source": "https://github.com/myhsia/whatsnote",
+      "status": 200,
+      "final_url": "https://github.com/myhsia/whatsnote",
+      "state": "reachable"
+    },
+    {
+      "name": "WisdomFusion-Templates",
+      "source": "https://github.com/WisdomFusion/latex-templates",
+      "status": 200,
+      "final_url": "https://github.com/WisdomFusion/latex-templates",
+      "state": "reachable"
+    },
+    {
+      "name": "YZ-Cai-Homework",
+      "source": "https://github.com/YZ-Cai/LatexHomeworkTemplate",
+      "status": 200,
+      "final_url": "https://github.com/YZ-Cai/LatexHomeworkTemplate",
+      "state": "reachable"
+    }
+  ]
+}

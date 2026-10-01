@@ -6,6 +6,7 @@ from pathlib import Path
 from urllib.parse import quote
 from projects import collect_projects
 from content import collect_content, detail_page
+from layout import public_pages, config
 
 ROOT = Path(__file__).resolve().parent.parent
 OUTPUT = ROOT / "_site"
@@ -43,8 +44,7 @@ notes.extend(unified_entries)
 project_files.update(unified_files)
 project_pages.update(legacy_note_pages)
 project_pages.update(unified_pages)
-required = ["index.html", "notes.html", "templates.html", "lumina-guide.html",
-            "styles.css", "app.js", "site-config.js", "template-data.js",
+required = ["styles.css", "app.js", "reader.js",
             "lumina-preview.pdf", "lumina-xelatex.zip"]
 for name in required:
     if not (ROOT / name).is_file():
@@ -56,6 +56,7 @@ if OUTPUT.exists():
 OUTPUT.mkdir()
 for name in required:
     shutil.copy2(ROOT / name, OUTPUT / name)
+shutil.copytree(ROOT / 'assets', OUTPUT / 'assets')
 for path in sorted((ROOT / "notes").rglob("*.pdf")):
     destination = OUTPUT / path.relative_to(ROOT)
     destination.parent.mkdir(parents=True, exist_ok=True)
@@ -69,5 +70,10 @@ for relative, content in project_pages.items():
     destination.parent.mkdir(parents=True, exist_ok=True)
     destination.write_text(content, encoding="utf-8")
 (OUTPUT / "notes-data.js").write_text("window.NOTES = " + json.dumps(notes, ensure_ascii=False, indent=2) + ";\n", encoding="utf-8")
+(OUTPUT / 'site-config.js').write_text('window.SITE = ' + json.dumps(config(), ensure_ascii=False) + ';\n', encoding='utf-8')
+resources = json.loads((ROOT / 'template-data.json').read_text(encoding='utf-8'))
+(OUTPUT / 'template-data.js').write_text('window.TEMPLATES = ' + json.dumps(resources, ensure_ascii=False) + ';\n', encoding='utf-8')
+for name, page in public_pages(notes, resources).items():
+    (OUTPUT / name).write_text(page, encoding='utf-8')
 (OUTPUT / ".nojekyll").touch()
 print(f"Built {len(notes)} entries and {len(project_pages)} detail pages in {OUTPUT}")

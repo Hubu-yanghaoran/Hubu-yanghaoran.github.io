@@ -1,0 +1,32 @@
+<section class="about-section" aria-labelledby="about">
+  <div class="eyebrow">About / 关于</div>
+  <h1 id="about"><span class="desktop-name">$name</span><span class="mobile-about">关于我</span></h1>
+  <div id="bio" class="lead">$bio</div>
+</section>
+<section id="recent" class="section">
+  <h2 class="section-title"><span class="section-label"><span class="section-number" aria-hidden="true">01</span><span>最近更新 <small>Recent updates</small></span></span><a href="notes.html">全部笔记 →</a></h2>
+  <div id="recent-notes">$recent</div>
+</section>
+<section class="section collections-section" aria-labelledby="collections-title">
+  <h2 class="section-title" id="collections-title"><span class="section-label"><span class="section-number" aria-hidden="true">02</span><span>笔记与资源 <small>Notes &amp; resources</small></span></span></h2>
+  <div class="collection-grid">
+    <div class="collection-entry"><h3><a href="notes.html">学习笔记 <span aria-hidden="true">↗</span></a></h3><p>课程学习、阅读记录与专题整理。</p><span class="collection-meta">$note_count 篇公开笔记 · $topic_count 个主题</span></div>
+    <div class="collection-entry"><h3><a href="templates.html">LaTeX 模板 <span aria-hidden="true">↗</span></a></h3><p>数学笔记、讲义与文档排版资源。</p><span class="collection-meta">$resource_count 项模板与资源</span></div>
+  </div>
+</section>
+<section id="resources" class="section">
+  <h2 class="section-title"><span class="section-label"><span class="section-number" aria-hidden="true">03</span><span>推荐工具 <small>Typesetting</small></span></span><a href="templates.html">资源目录 →</a></h2>
+  <article class="entry featured-resource">
+    <h3><a href="lumina-guide.html"><span class="resource-name">Lumina</span><span class="resource-subtitle">中英文数学笔记模板</span></a></h3>
+    <p>保留上游视觉风格的中文适配版，附示例与使用说明。</p>
+    <p class="meta">XeLaTeX · 中文适配 · 上游作者 Soham Chatterjee · MIT</p>
+    <div class="links"><a href="lumina-preview.pdf">PDF 预览</a><a href="lumina-xelatex.zip" download>下载源码</a><a href="lumina-guide.html">使用说明</a></div>
+  </article>
+</section>
+<section class="section topics-section">
+  <h2 class="section-title"><span class="section-label"><span class="section-number" aria-hidden="true">04</span><span>阅读方向 <small>Topics</small></span></span></h2>
+  <div class="topic-index">$categories</div>
+</section>
+<section id="publications-section" class="section" $publications_hidden>
+  <h2 class="section-title"><span class="section-label"><span class="section-number" aria-hidden="true">05</span><span>学术成果</span></span></h2><div id="publications">$publications</div>
+</section>

@@ -1,0 +1,41 @@
+<header class="document-header">
+  <div class="eyebrow">Typesetting / 排版说明</div>
+  <h1>Lumina XeLaTeX 中文版</h1>
+  <p class="lead">适合中英文数学笔记与讲义，保留原版封面、配色、章节和定理框。</p>
+  <p class="meta">XeLaTeX · 中英文排版 · 上游作者 Soham Chatterjee · MIT</p>
+</header>
+<div class="callout guide-download" aria-labelledby="guide-download-title">
+  <h2 id="guide-download-title">源码与示例</h2>
+  <p>完整源码、已编译的 PDF 与使用说明随适配包提供。</p>
+  <div class="links"><a href="lumina-xelatex.zip" download>下载源码</a><a href="lumina-preview.pdf">PDF 预览</a><a href="https://github.com/sohamch08/lumina">上游项目</a></div>
+</div>
+<article class="note-body guide-body" aria-label="Lumina 使用说明">
+  <h2 id="environment">01 · 编译环境</h2>
+  <p>解压源码后打开 <code>main.tex</code>。建议完整 TeX Live，选择 XeLaTeX；不要用 pdfLaTeX。中文字体使用 TeX Live 自带 Fandol，无需 Windows 专有字体。</p>
+  <h2 id="compile">02 · 编译与运行</h2>
+  <p>在项目目录重复执行下面的命令三次，生成目录与交叉引用：</p>
+  <pre><code>xelatex -interaction=nonstopmode -halt-on-error main.tex</code></pre>
+  <p>也可运行包内 <code>build.ps1</code>。Overleaf 上传完整项目后，将 <code>main.tex</code> 设为主文档并选择 XeLaTeX；该云端流程尚未实际测试。</p>
+  <h2 id="structure">03 · 文件与修改入口</h2>
+  <p>在 <code>main.tex</code> 修改标题、作者、课程信息和正文。保持文件结构完整。</p>
+  <dl class="file-index">
+    <div><dt><code>lumina-xecjk.tex</code></dt><dd>中文字体设置</dd></div>
+    <div><dt><code>config.tex</code></dt><dd>原版配色及文档配置</dd></div>
+    <div><dt><code>preamble.tex</code></dt><dd>章节、定理框和页眉</dd></div>
+    <div><dt><code>title.tex</code></dt><dd>封面排版</dd></div>
+    <div><dt><code>macros.tex</code> / <code>letterfonts.tex</code></dt><dd>原版命令与数学字体</dd></div>
+  </dl>
+  <h2 id="example">04 · 正文示例</h2>
+  <pre><code>\chapter{数学笔记}
+\section{数列}
+\dfn[limit]{极限}{这里写定义。}
+\thm[unique]{唯一性}{这里写定理。}
+\begin{proof}这里写证明。\end{proof}
+\nt{这里写备注。}</code></pre>
+  <h2 id="verification">05 · 验证与限制</h2>
+  <p>已在本地 TeX Live 2026 下用 XeLaTeX 编译并检查 5 页示例。少量字体回退、underfull box 和原版相关提示仍存在。Chapter、Definition 等英文装饰标签有意保留；无 Git 元数据时页脚显示 Untracked。</p>
+  <blockquote><p>新增内容后应重新检查 PDF，生僻字可能需要更完整的中文字体。</p></blockquote>
+  <h2 id="attribution">06 · 作者与许可</h2>
+  <p>上游作者为 Soham Chatterjee；MIT 许可证及版权声明保留在源码包中。完整中英文说明随包附带。适配版不是原作者官方中文版。</p>
+  <div class="links"><a href="templates.html">返回模板目录</a><a href="https://github.com/sohamch08/lumina">查看上游项目</a></div>
+</article>

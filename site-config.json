@@ -1,0 +1,15 @@
+{
+  "name": "Yang Haoran",
+  "subtitle": "数学学习 · 笔记整理 · LaTeX",
+  "github": "https://github.com/Hubu-yanghaoran",
+  "avatar": "",
+  "affiliation": "",
+  "location": "",
+  "email": "",
+  "bio": [
+    "你好，我是 Yang Haoran。这里整理我的学习笔记、LaTeX 模板与公开资料。",
+    "我希望把零散的学习记录整理成可阅读、可复用的知识。"
+  ],
+  "interests": ["数学", "学习笔记", "LaTeX"],
+  "publications": []
+}
