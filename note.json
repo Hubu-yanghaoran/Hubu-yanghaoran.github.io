@@ -1,0 +1,17 @@
+{
+  "title": "线性代数：向量空间入门（测试笔记）",
+  "description": "用于验证分类、笔记详情页和中文附件链接的测试内容。",
+  "category": "数学",
+  "date": "2026-10-01",
+  "tags": ["线性代数", "测试"],
+  "main": "向量空间入门.md",
+  "attachments": [
+    {"file": "向量空间入门.md", "label": "向量空间入门 · Markdown 笔记"}
+  ],
+  "author": "Yang Haoran",
+  "instructions": [
+    "这是一条发布流程测试笔记，可用于检查数学分类、详情页和中文文件名链接。",
+    "当前网站将 Markdown 作为原始附件提供，不会自动排版为网页文章；可下载后用 Markdown 编辑器阅读。",
+    "完成测试后可删除 content/linear-algebra-test 整个目录，并提交更改。"
+  ]
+}
