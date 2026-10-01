@@ -1,0 +1,1 @@
+window.SITE = {name:"Yang Haoran", subtitle:"学习笔记 · LaTeX · 资料整理", github:"https://github.com/Hubu-yanghaoran", bio:["你好，我是 Yang Haoran。这里整理我的学习笔记、LaTeX 模板与公开资料。","我希望把零散的学习记录整理成可阅读、可复用的知识。具体个人经历与学术信息将在确认后补充。"], interests:["学习笔记","数学排版","LaTeX"], publications:[]};
