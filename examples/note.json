@@ -1,0 +1,14 @@
+{
+  "title": "填写笔记名称",
+  "description": "填写简介",
+  "category": "数学",
+  "date": "",
+  "tags": ["LaTeX"],
+  "main": "main.pdf",
+  "attachments": [
+    {"file": "main.pdf", "label": "完整笔记 PDF"},
+    {"file": "source.zip", "label": "配套源码 ZIP"}
+  ],
+  "engine": "XeLaTeX",
+  "instructions": ["填写阅读或编译说明。"]
+}
