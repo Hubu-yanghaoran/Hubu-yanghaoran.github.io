@@ -5,15 +5,79 @@ import re
 from pathlib import Path
 from urllib.parse import quote, urlsplit
 
+def render_markdown(text):
+    """Safe basic Markdown: headings, flat lists, fenced code and emphasis."""
+    def inline(value):
+        output = []
+        for part in re.split(r"(`[^`]+`)", value):
+            if part.startswith("`") and part.endswith("`"):
+                output.append("<code>" + html.escape(part[1:-1]) + "</code>")
+            else:
+                part = html.escape(part)
+                part = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", part)
+                part = re.sub(r"(?<!\*)\*([^*]+)\*(?!\*)", r"<em>\1</em>", part)
+                output.append(part)
+        return "".join(output)
+    result, paragraph, code = [], [], []
+    list_type, fence = None, None
+    def flush():
+        nonlocal list_type
+        if paragraph:
+            result.append("<p>" + "<br>".join(inline(line) for line in paragraph) + "</p>")
+            paragraph.clear()
+        if list_type:
+            result.append(f"</{list_type}>")
+            list_type = None
+    for line in text.splitlines():
+        marker = re.match(r"^\s{0,3}(`{3,}|~{3,})(.*)$", line)
+        if fence:
+            if marker and marker[1][0] == fence[0] and len(marker[1]) >= len(fence) and not marker[2].strip():
+                result.append("<pre><code>" + html.escape("\n".join(code)) + "</code></pre>")
+                fence, code = None, []
+            else:
+                code.append(line)
+            continue
+        if marker:
+            flush()
+            fence = marker[1]
+            continue
+        heading = re.match(r"^\s{0,3}(#{1,6})\s+(.+)$", line)
+        bullet = re.match(r"^\s{0,3}(?:[-+*]\s+|\d+[.)]\s+)(.+)$", line)
+        if not line.strip():
+            flush()
+        elif heading:
+            flush()
+            level = min(len(heading[1]) + 1, 6)
+            result.append(f"<h{level}>" + inline(heading[2]) + f"</h{level}>")
+        elif bullet:
+            kind = "ol" if re.match(r"^\s*\d", line) else "ul"
+            if paragraph or list_type != kind:
+                flush()
+                result.append(f"<{kind}>")
+                list_type = kind
+            result.append("<li>" + inline(bullet[1]) + "</li>")
+        else:
+            if list_type:
+                flush()
+            paragraph.append(line)
+    flush()
+    if fence:
+        result.append("<pre><code>" + html.escape("\n".join(code)) + "</code></pre>")
+    return "\n".join(result)
+
 def detail_page(item, resources, prefix="../../"):
     esc = lambda value: html.escape(str(value), quote=True)
     main = item.get("main", "")
-    links, files = [], []
+    links, files, body = [], [], ""
     for resource in resources:
         url, label = resource["url"], resource["label"]
         url = prefix + url if not urlsplit(url).scheme else url
         if resource.get("file") == main:
-            links.append(f'<a href="{esc(url)}">阅读主文档</a>')
+            if "markdown" in resource:
+                links.append('<a href="#note-body">阅读主文档</a>')
+                body = '<section id="note-body" class="section note-body" aria-label="笔记正文">' + render_markdown(resource["markdown"]) + '</section>'
+            else:
+                links.append(f'<a href="{esc(url)}">阅读主文档</a>')
         files.append(f'<li><a href="{esc(url)}">{esc(label)}</a></li>')
     if item.get("repository"):
         url = item["repository"]
@@ -24,7 +88,9 @@ def detail_page(item, resources, prefix="../../"):
     paragraphs = item.get("instructions", [])
     if not isinstance(paragraphs, list):
         raise ValueError("instructions must be an array")
-    sections = ""
+    sections = body
+    if body:
+        sections += '<style>.note-body{line-height:1.85;overflow-wrap:anywhere}.note-body h2,.note-body h3,.note-body h4{margin-top:1.5em}.note-body pre{padding:1rem;background:#f2f5f8;border:1px solid #dbe3ed;overflow:auto;white-space:pre;overflow-wrap:normal}.note-body code{font-family:Consolas,monospace}.note-body :not(pre)>code{background:#f2f5f8;padding:.1em .3em}.note-body li{margin:.35em 0}</style>'
     if files:
         sections += '<section class="section"><h2 class="section-title">文档与附件</h2><ul>' + "".join(files) + "</ul></section>"
     if item.get("engine") or paragraphs:
@@ -77,6 +143,8 @@ def collect_content(root):
             relative = path.relative_to(root).as_posix()
             copies[relative] = path
             resources.append({"file": value, "label": attachment.get("label", path.name), "url": quote(relative, safe="/")})
+            if path.suffix.lower() == ".md" and value == item.get("main"):
+                resources[-1]["markdown"] = path.read_text(encoding="utf-8-sig")
         if item.get("main") and item["main"] not in seen:
             raise ValueError("main must reference a listed attachment")
         if not resources and not item.get("repository"):
