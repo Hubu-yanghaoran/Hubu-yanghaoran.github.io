@@ -101,7 +101,7 @@ def public_pages(notes, resources):
         pages[f'{kind}.html'] = render_layout(heading, heading + '目录与使用资料。', main, page=kind, scripts=scripts)
     guide = (ROOT / 'templates/lumina.html').read_text(encoding='utf-8')
     guide_sections = [('environment', '编译环境'), ('compile', '编译与运行'), ('structure', '文件与修改入口'),
-                      ('example', '正文示例'), ('verification', '验证与限制'), ('attribution', '作者与许可')]
+                      ('example', '正文示例'), ('all-environments', '全部环境索引与示例'), ('verification', '验证与限制'), ('attribution', '作者与许可')]
     guide_toc = ''.join(f'<li><a href="#{anchor}">{index:02d} · {label}</a></li>' for index, (anchor, label) in enumerate(guide_sections, 1))
     guide_sidebar = '<h2>排版资源</h2><p>Lumina 中文适配版</p><a href="templates.html">全部模板与资源</a>'
     guide_sidebar += '<nav class="article-toc" aria-label="说明目录"><details class="toc-disclosure" open><summary>本文目录</summary><ol>' + guide_toc + '</ol></details></nav>'
