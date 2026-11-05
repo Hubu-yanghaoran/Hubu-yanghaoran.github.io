@@ -1,4 +1,4 @@
-name: Build and publish academic homepage
+name: Build and publish Fuwari website
 on:
   push:
     branches: [main]
@@ -11,28 +11,29 @@ concurrency:
   group: pages-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  validate:
+  build:
     runs-on: ubuntu-latest
+    env:
+      ASTRO_TELEMETRY_DISABLED: '1'
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-node@v4
         with:
-          python-version: '3.12'
-      - name: Test content rendering
-        run: python -m unittest discover -s scripts -p 'test_*.py' -v
-      - name: Build static pages
-        run: python scripts/build.py
-      - name: Check links and resources
-        run: python scripts/check_links.py
+          node-version: '24'
+      - uses: pnpm/action-setup@v4
+        with:
+          version: '9.14.4'
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm check
+      - run: pnpm build
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: _site
+          path: dist
   deploy:
     if: github.event_name != 'pull_request'
-    needs: validate
+    needs: build
     runs-on: ubuntu-latest
     permissions:
-      contents: read
       pages: write
       id-token: write
     environment:

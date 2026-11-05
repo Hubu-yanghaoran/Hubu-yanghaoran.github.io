@@ -1,108 +1,99 @@
-# Yang Haoran 个人知识库
+# 🍥Fuwari  
+![Node.js >= 20](https://img.shields.io/badge/node.js-%3E%3D20-brightgreen) 
+![pnpm >= 9](https://img.shields.io/badge/pnpm-%3E%3D9-blue) 
+[![DeepWiki](https://img.shields.io/badge/DeepWiki-saicaca%2Ffuwari-blue.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAyCAYAAAAnWDnqAAAAAXNSR0IArs4c6QAAA05JREFUaEPtmUtyEzEQhtWTQyQLHNak2AB7ZnyXZMEjXMGeK/AIi+QuHrMnbChYY7MIh8g01fJoopFb0uhhEqqcbWTp06/uv1saEDv4O3n3dV60RfP947Mm9/SQc0ICFQgzfc4CYZoTPAswgSJCCUJUnAAoRHOAUOcATwbmVLWdGoH//PB8mnKqScAhsD0kYP3j/Yt5LPQe2KvcXmGvRHcDnpxfL2zOYJ1mFwrryWTz0advv1Ut4CJgf5uhDuDj5eUcAUoahrdY/56ebRWeraTjMt/00Sh3UDtjgHtQNHwcRGOC98BJEAEymycmYcWwOprTgcB6VZ5JK5TAJ+fXGLBm3FDAmn6oPPjR4rKCAoJCal2eAiQp2x0vxTPB3ALO2CRkwmDy5WohzBDwSEFKRwPbknEggCPB/imwrycgxX2NzoMCHhPkDwqYMr9tRcP5qNrMZHkVnOjRMWwLCcr8ohBVb1OMjxLwGCvjTikrsBOiA6fNyCrm8V1rP93iVPpwaE+gO0SsWmPiXB+jikdf6SizrT5qKasx5j8ABbHpFTx+vFXp9EnYQmLx02h1QTTrl6eDqxLnGjporxl3NL3agEvXdT0WmEost648sQOYAeJS9Q7bfUVoMGnjo4AZdUMQku50McDcMWcBPvr0SzbTAFDfvJqwLzgxwATnCgnp4wDl6Aa+Ax283gghmj+vj7feE2KBBRMW3FzOpLOADl0Isb5587h/U4gGvkt5v60Z1VLG8BhYjbzRwyQZemwAd6cCR5/XFWLYZRIMpX39AR0tjaGGiGzLVyhse5C9RKC6ai42ppWPKiBagOvaYk8lO7DajerabOZP46Lby5wKjw1HCRx7p9sVMOWGzb/vA1hwiWc6jm3MvQDTogQkiqIhJV0nBQBTU+3okKCFDy9WwferkHjtxib7t3xIUQtHxnIwtx4mpg26/HfwVNVDb4oI9RHmx5WGelRVlrtiw43zboCLaxv46AZeB3IlTkwouebTr1y2NjSpHz68WNFjHvupy3q8TFn3Hos2IAk4Ju5dCo8B3wP7VPr/FGaKiG+T+v+TQqIrOqMTL1VdWV1DdmcbO8KXBz6esmYWYKPwDL5b5FA1a0hwapHiom0r/cKaoqr+27/XcrS5UwSMbQAAAABJRU5ErkJggg==)](https://deepwiki.com/saicaca/fuwari)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsaicaca%2Ffuwari.svg?type=shield&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2Fsaicaca%2Ffuwari?ref=badge_shield&issueType=license)
 
-这是原个人主页的渐进改进版，继续采用 Python 静态构建和 GitHub Pages。
+A static blog template built with [Astro](https://astro.build).
 
-## 本地预览
+[**🖥️ Live Demo (Vercel)**](https://fuwari.vercel.app)
 
-在完整改进包中双击上一级 start-preview.cmd。脚本构建网页并启动仅监听 127.0.0.1 的本地预览服务。浏览器打开 http://127.0.0.1:8765/；关闭终端窗口即可停止服务。
+![Preview Image](https://raw.githubusercontent.com/saicaca/resource/main/fuwari/home.png)
 
-手动执行：
+🌏 README in
+[**中文**](https://github.com/saicaca/fuwari/blob/main/docs/README.zh-CN.md) /
+[**日本語**](https://github.com/saicaca/fuwari/blob/main/docs/README.ja.md) /
+[**한국어**](https://github.com/saicaca/fuwari/blob/main/docs/README.ko.md) /
+[**Español**](https://github.com/saicaca/fuwari/blob/main/docs/README.es.md) /
+[**ไทย**](https://github.com/saicaca/fuwari/blob/main/docs/README.th.md) /
+[**Tiếng Việt**](https://github.com/saicaca/fuwari/blob/main/docs/README.vi.md) /
+[**Bahasa Indonesia**](https://github.com/saicaca/fuwari/blob/main/docs/README.id.md) (Provided by the community and may not always be up-to-date)
 
-```text
-python scripts/build.py
-python scripts/check_links.py
-python -m http.server 8765 --bind 127.0.0.1 --directory _site
+## ✨ Features
+
+- [x] Built with [Astro](https://astro.build) and [Tailwind CSS](https://tailwindcss.com)
+- [x] Smooth animations and page transitions
+- [x] Light / dark mode
+- [x] Customizable theme colors & banner
+- [x] Responsive design
+- [x] Search functionality with [Pagefind](https://pagefind.app/)
+- [x] [Markdown extended features](https://github.com/saicaca/fuwari?tab=readme-ov-file#-markdown-extended-syntax)
+- [x] Table of contents
+- [x] RSS feed
+
+## 🚀 Getting Started
+
+1. Create your blog repository:
+    - [Generate a new repository](https://github.com/saicaca/fuwari/generate) from this template or fork this repository.
+    - Or run one of the following commands:
+       ```sh
+       npm create fuwari@latest
+       yarn create fuwari
+       pnpm create fuwari@latest
+       bun create fuwari@latest
+       deno run -A npm:create-fuwari@latest
+       ```
+2. To edit your blog locally, clone your repository, run `pnpm install` to install dependencies.
+    - Install [pnpm](https://pnpm.io) `npm install -g pnpm` if you haven't.
+3. Edit the config file `src/config.ts` to customize your blog.
+4. Run `pnpm new-post <filename>` to create a new post and edit it in `src/content/posts/`.
+5. Deploy your blog to Vercel, Netlify, GitHub Pages, etc. following [the guides](https://docs.astro.build/en/guides/deploy/). You need to edit the site configuration in `astro.config.mjs` before deployment.
+
+## 📝 Frontmatter of Posts
+
+```yaml
+---
+title: My First Blog Post
+published: 2023-09-09
+description: This is the first post of my new Astro blog.
+image: ./cover.jpg
+tags: [Foo, Bar]
+category: Front-end
+draft: false
+lang: jp      # Set only if the post's language differs from the site's language in `config.ts`
+---
 ```
 
-实际网页位于 _site/。不要把 _site 当作源文件编辑，也不要直接发布项目根目录。
+## 🧩 Markdown Extended Syntax
 
-## 维护入口
+In addition to Astro's default support for [GitHub Flavored Markdown](https://github.github.com/gfm/), several extra Markdown features are included:
 
-| 文件 / 目录 | 用途 |
-| --- | --- |
-| site-config.json | 姓名、简介、学习方向、GitHub 与成果 |
-| template-data.json | 第三方模板资源及归属信息 |
-| templates/base.html | 所有新页面共用的导航、布局和页脚 |
-| templates/home.html | 首页正文 |
-| templates/catalog.html | 列表与检索界面 |
-| templates/lumina.html | 模板适配说明 |
-| scripts/layout.py | 静态列表、公共布局和首页生成 |
-| scripts/content.py | 内容清单校验、附件收集和详情页 |
-| scripts/markdown_reader.py | Markdown、图片、公式与目录 |
-| styles.css / app.js / reader.js | 样式、检索交互和公式排版 |
-| content/笔记ID/ | 唯一的新内容入口 |
-| notes/ 与 projects/ | 旧内容兼容入口 |
-| assets/katex/ | 固定版本的本地公式脚本、字体和许可 |
-| vendor/ | 固定版本 Python Markdown 依赖及许可 |
-| archive/ | 被替代的旧页面与重复配置，构建不发布 |
+- Admonitions ([Preview and Usage](https://fuwari.vercel.app/posts/markdown-extended/#admonitions))
+- GitHub repository cards ([Preview and Usage](https://fuwari.vercel.app/posts/markdown-extended/#github-repository-cards))
+- Enhanced code blocks with Expressive Code ([Preview](https://fuwari.vercel.app/posts/expressive-code/) / [Docs](https://expressive-code.com/))
 
-站点配置和资源数据会在构建时生成 site-config.js、template-data.js；笔记列表生成 notes-data.js。首页、分类列表及详情正文均生成实际 HTML，JavaScript 提供搜索、筛选与排序。
+## ⚡ Commands
 
-## 数学阅读
+All commands are run from the root of the project, from a terminal:
 
-支持标题、链接、图片、引用、表格、嵌套列表、代码和公式。公式使用 $...$、$$...$$、\(...\)、\[...\]。目录锚点自动生成，重名标题自动区分。
+| Command                    | Action                                              |
+|:---------------------------|:----------------------------------------------------|
+| `pnpm install`             | Installs dependencies                               |
+| `pnpm dev`                 | Starts local dev server at `localhost:4321`         |
+| `pnpm build`               | Build your production site to `./dist/`             |
+| `pnpm preview`             | Preview your build locally, before deploying        |
+| `pnpm check`               | Run checks for errors in your code                  |
+| `pnpm format`              | Format your code using Biome                        |
+| `pnpm new-post <filename>` | Create a new post                                   |
+| `pnpm astro ...`           | Run CLI commands like `astro add`, `astro check`    |
+| `pnpm astro --help`        | Get help using the Astro CLI                        |
 
-Markdown 主文档中的相对图片会被校验并复制；支持 PNG/JPEG/WEBP/GIF。图片须位于同一笔记目录中。直接 HTML 作为文本转义；公式使用 KaTeX，trust=false。解析失败的公式保留原 TeX。
+## ✏️ Contributing
 
-## 内容与更新
+Check out the [Contributing Guide](https://github.com/saicaca/fuwari/blob/main/CONTRIBUTING.md) for details on how to contribute to this project.
 
-每篇笔记使用 content/稳定ID/note.json。目录就是稳定地址；修改标题时不要改目录。date 表示创建日期，updated 表示更新日期。标签、摘要、附件和使用说明写在 note.json 中，详情页自动生成。
+## 📄 License
 
-上传器新增和更新均使用相同格式。旧 PDF 地址继续保留。
+This project is licensed under the MIT License.
 
-## GitHub Pages 升级
-
-将 website/内的源码、模板、assets、vendor 和 .github 配置合并到现有仓库根目录，保留仓库已有 content/、notes/、projects/。示例笔记用于本地验收，是否保留由你决定。
-
-不要上传 _site、__pycache__、本机 settings、草稿、checkout 或验收截图。本项目 .gitignore 已排除生成目录。
-
-Actions 在 PR 上运行渲染测试、构建与内部链接检查；main 推送验证通过后部署。Actions 的远端执行仍需首次部署后验证。
-
-## 测试
-
-```text
-python -m unittest discover -s scripts -p 'test_*.py' -v
-python scripts/build.py
-python scripts/check_links.py
-```
-
-Python 依赖已附带，可离线构建。数学资源也在本地，不使用外部 CDN。
-
-PDF 笔记在详情页内直接预览，支持连续滚动、页码跳转、缩放与中英文版本切换；“展开阅读”可加宽阅读区。预览使用 assets/pdfjs/ 中固定版本的 Mozilla PDF.js，不依赖外部 CDN 或浏览器 PDF 插件。禁用 JavaScript 时仍可独立打开或下载 PDF。新增 PDF 只需按 content/ 的规范登记 main 与 attachments，无需逐篇修改页面。
-
-## 当前视觉方向（第九批）
-
-沿原网站的学术风格细化：白色背景、深蓝衬线姓名、蓝色链接、个人资料侧栏和顺序栏目。第五、六批的绿金风格与装饰首页已撤下。设计方向记录在 DESIGN.md 中；逐批验收文件和截图保留历史状态。
-
-第八批整理公共 CSS、统一辅助文字为至少 13px（标签和短栏目标识除外）、加深文字对比度并增大手机链接区域。手机首页压缩重复身份展示，最近更新提前；矮桌面窗口的侧栏采用正常流，其他桌面窗口限制侧栏高度并允许滚动。
-
-第九批对照 Lumina 示例，进一步细化衬线章节标题、小编号、留白和浅色重点区。Lumina 使用说明改为有目录、文件索引和清晰下载区的文稿页面；笔记标题区与正文宽度统一为最多 760px。代码块字号为 13px，长命令在代码区内滚动。
-
-说明与笔记目录可展开或收起，桌面默认展开，820px 以下默认收起；没有 JavaScript 时保持展开，仍可直接浏览目录。样式、脚本及生成的内容数据附带版本地址，更新后不会继续复用同一地址的旧缓存。
-
-正文首个 H1 与页面标题一致时，仅显示页面标题，同时保留原标题锚点和源文档。页面标题附有额外标记时，可在 note.json 填写 document_title 指明原文标题；其他标题不随意删改。
-
-## 外部资源核查
-
-resource-audit.json 保存 47 个资源入口的 HTTP 核查时间、状态及重定向地址。本轮均可访问。用 python scripts/audit_resources.py 可再次核查；需要网络，且不纳入离线构建或 CI 必须项。
-
-HTTP 可达仅说明入口在核查时响应正常，不保证项目内容、编译环境或第三方下载包可用。目录中的编译环境仍应以项目说明为准，全部模板的实际编译测试尚未完成。
-
-## 可选个人资料
-
-site-config.json 中的 avatar、affiliation、location、email 为空时不显示相应资料；头像为空时采用原网站的 YHR 字母标识。
-
-将自己的照片放入 assets/profile.jpg，并填写 "avatar": "assets/profile.jpg"，重新构建即可。建议使用接近正方形的照片，页面自动圆形裁切。
-
-参考项目为用户提供的 Yixin 个人主页与 Academic Pages：
-
-- https://github.com/Yixin0313/personal-homepage-template
-- https://github.com/academicpages/academicpages.github.io
-
-详细步骤见上一级第七批验收.md。当前设计不需要在线字体、外部背景图片或额外动画库。
-
-## 外观与笔记视图
-
-顶部“外观”可选择学术蓝、纸页或数字花园三套风格，并调整网页笔记的正文字体与字号。学习笔记目录提供卡片、列表、书架三种展示方式。设置会保存在当前浏览器，可一键恢复默认；浏览器禁用本地存储时，仅在本页生效。
-
-样式切换保留搜索、分类与排序。笔记目录的 `view=cards`、`view=list`、`view=shelf` 参数可用于分享视图。开源参考与实现位置见 [DESIGN-REFERENCES.md](DESIGN-REFERENCES.md)。
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsaicaca%2Ffuwari.svg?type=large&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2Fsaicaca%2Ffuwari?ref=badge_large&issueType=license)

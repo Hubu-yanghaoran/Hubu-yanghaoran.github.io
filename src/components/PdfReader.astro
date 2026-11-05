@@ -1,0 +1,42 @@
+---
+interface Props { documents: {label: string; url: string}[] }
+const { documents } = Astro.props;
+const viewer = (url: string) => '/assets/pdfjs/viewer.html?file=' + encodeURIComponent('../..' + url);
+const first = documents[0];
+---
+{first && <paper-reader class="block mb-6" data-pagefind-ignore>
+  <div class="flex flex-wrap items-center gap-2 mb-3">
+    {documents.map((doc, index) => <a href={doc.url} data-viewer={viewer(doc.url)} aria-current={index === 0 ? 'true' : 'false'} class="pdf-version btn-regular px-3 py-2 rounded-lg text-sm">{doc.label}</a>)}
+  </div>
+  <div class="flex flex-wrap gap-4 mb-3 text-sm text-[var(--primary)]">
+    <a data-open href={first.url} target="_blank" rel="noopener">独立窗口 ↗</a>
+    <a data-download href={first.url} download>下载 PDF</a>
+  </div>
+  <iframe src={viewer(first.url)} title={first.label + '在线预览'} class="w-full rounded-xl border-0" style="height:72vh;min-height:420px"></iframe>
+  <p class="text-xs text-black/50 dark:text-white/50 mt-2">可滚动、翻页和缩放；也可独立打开或下载阅读。</p>
+</paper-reader>}
+<style>.pdf-version[aria-current=true] { background: var(--primary); color: var(--card-bg); }</style>
+<script>
+class PaperReader extends HTMLElement {
+  controller?: AbortController;
+  connectedCallback() {
+    this.controller?.abort();
+    this.controller = new AbortController();
+    this.querySelectorAll<HTMLAnchorElement>('a[data-viewer]').forEach(link => {
+      link.addEventListener('click', event => {
+        if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
+        const frame = this.querySelector('iframe');
+        if (!frame || !link.dataset.viewer) return;
+        frame.src = link.dataset.viewer;
+        frame.title = link.textContent + '在线预览';
+        this.querySelectorAll('a[data-viewer]').forEach(other => other.setAttribute('aria-current', String(other === link)));
+        this.querySelector<HTMLAnchorElement>('[data-open]')!.href = link.href;
+        this.querySelector<HTMLAnchorElement>('[data-download]')!.href = link.href;
+      }, { signal: this.controller!.signal });
+    });
+  }
+  disconnectedCallback() { this.controller?.abort(); }
+}
+if (!customElements.get('paper-reader')) customElements.define('paper-reader', PaperReader);
+</script>
