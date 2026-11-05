@@ -1,0 +1,26 @@
+{
+  "title": "二元整数多项式小根的 Coppersmith 方法",
+  "description": "依据 Coppersmith 原论文第 10 节，展开二元整数多项式小根方法的矩阵构造、子格提取、辅助方程、结式求解与最终根界。",
+  "category": "密码学",
+  "date": "2026-11-05",
+  "tags": [
+    "学习笔记",
+    "Coppersmith",
+    "二元多项式",
+    "小根",
+    "格",
+    "LLL"
+  ],
+  "main": "coppersmith-bivariate-integer-notes-appendix.pdf",
+  "attachments": [
+    {
+      "file": "coppersmith-bivariate-integer-notes-appendix.pdf",
+      "label": "二元整数多项式小根学习笔记（含附录）· PDF"
+    }
+  ],
+  "instructions": [
+    "依据 Coppersmith（1997）原论文第 10 节展开，附二元方法的计算步骤及文献核对位置。",
+    "可与本站的一元模多项式小根方法笔记对照阅读；对应的 Coppersmith 论文条目提供英文原文及中文译本。",
+    "可在页面内预览 PDF，也可独立打开或下载阅读。文档右侧留白供批注。"
+  ]
+}
