@@ -109,5 +109,35 @@ class ContentTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, '登记'):
             collect_content(self.root)
 
+    def test_pdf_reader_defaults_to_main_and_exposes_both_versions(self):
+        for name in ('original.pdf', '中文译本.pdf'):
+            (self.folder / name).write_bytes(b'%PDF-1.4 fixture')
+        self.item.update(main='中文译本.pdf', attachments=[
+            {'file': 'original.pdf', 'label': '英文原文'},
+            {'file': '中文译本.pdf', 'label': '中文译本'},
+        ])
+        self.save()
+        entries, files, pages, _ = collect_content(self.root)
+        page = pages['content/example/index.html']
+        self.assertEqual(entries[0]['format'], 'PDF')
+        self.assertIn('content/example/original.pdf', files)
+        self.assertIn('id="pdf-frame"', page)
+        self.assertIn('assets/pdfjs/viewer.html?file=', page)
+        self.assertIn('%25E4%25B8%25AD', page)
+        self.assertIn('aria-current="true">中文译本</a>', page)
+        self.assertIn('aria-current="false">英文原文</a>', page)
+        self.assertIn('id="pdf-download"', page)
+        self.assertIn('reader.js?v=', page)
+
+    def test_markdown_reader_survives_with_pdf_attachment(self):
+        (self.folder / 'extra.pdf').write_bytes(b'%PDF-1.4 fixture')
+        self.item['attachments'].append({'file': 'extra.pdf'})
+        self.save()
+        _, _, pages, _ = collect_content(self.root)
+        page = pages['content/example/index.html']
+        self.assertIn('id="note-body"', page)
+        self.assertIn('id="pdf-frame"', page)
+        self.assertIn('katex.min.js', page)
+
 if __name__ == '__main__':
     unittest.main()

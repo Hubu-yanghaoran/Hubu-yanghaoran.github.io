@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PDF 在线阅读</title>
+<link rel="stylesheet" href="pdf_viewer.css">
+<link rel="stylesheet" href="viewer.css">
+<script type="module" src="viewer.mjs"></script>
+</head>
+<body>
+<div class="viewer-toolbar" aria-label="PDF 阅读工具">
+  <div class="page-controls"><button id="previous" type="button" aria-label="上一页" disabled>‹</button><label for="page-number" class="sr-only">页码</label><input id="page-number" type="number" min="1" value="1" aria-label="页码" disabled><span id="page-count">/ —</span><button id="next" type="button" aria-label="下一页" disabled>›</button></div>
+  <div class="zoom-controls"><button id="zoom-out" type="button" aria-label="缩小" disabled>−</button><button id="fit" type="button" disabled>适合宽度</button><button id="zoom-in" type="button" aria-label="放大" disabled>＋</button></div>
+</div>
+<p id="viewer-status" role="status">正在载入 PDF…</p>
+<div id="viewer-container" tabindex="0" aria-label="PDF 文档，可滚动阅读"><div id="viewer" class="pdfViewer"></div></div>
+<noscript><p class="viewer-error">请启用 JavaScript 以预览 PDF，或使用页面中的独立窗口和下载链接。</p></noscript>
+</body>
+</html>

@@ -34,6 +34,13 @@ def entry(item, kind='notes'):
     heading = f'<a href="{safe_link(href)}">{esc(title)}</a>' if href else esc(title)
     metadata = item.get('engine', '') if kind == 'templates' else ' · '.join(filter(None, [item.get('updated') or item.get('date', ''), item.get('category', '')]))
     tags = ''.join(f'<span class="tag">{esc(tag)}</span>' for tag in item.get('tags', []))
+    if kind == 'notes':
+        format_label = item.get('format') or '笔记'
+        type_label = '论文译读' if '论文翻译' in item.get('tags', []) else '学习记录'
+        return f'''<article class="entry note-card">
+<div class="note-card-top"><span class="note-format">{esc(format_label)}</span><span>{esc(type_label)}</span></div>
+<h3>{heading}</h3><p class="note-description">{esc(item.get('description', ''))}</p>
+<div class="note-tags">{tags}</div><div class="note-card-footer"><span class="meta">{esc(metadata)}</span><a href="{safe_link(href)}">{'在线阅读' if format_label == 'PDF' else '阅读笔记'} <span aria-hidden="true">↗</span></a></div></article>'''
     source = f'<div class="links"><a href="{safe_link(item["source"])}">原作者与项目说明</a></div>' if item.get('source') else ''
     return f'<article class="entry"><h3>{heading}</h3><p>{esc(item.get("description") or item.get("style", ""))}</p><p class="meta">{esc(metadata)}</p><div>{tags}</div>{source}</article>'
 
@@ -88,17 +95,17 @@ def public_pages(notes, resources):
     groups = []
     for category, count in sorted(counts.items()):
         body = ''.join(entry(item) for item in notes if item.get('category', '未分类') == category)
-        groups.append(f'<details class="note-category"><summary><span class="category-name">{esc(category)}</span><span class="category-count">{count} 篇笔记</span></summary><div class="category-body">{body}</div></details>')
+        groups.append(f'<section class="note-category"><div class="category-heading"><h2>{esc(category)}</h2><span class="category-count">{count:02d} 篇笔记</span></div><div class="category-body">{body}</div></section>')
     for kind in ('notes', 'templates'):
         is_notes = kind == 'notes'
         heading = '学习笔记' if is_notes else 'LaTeX 模板与资源'
-        featured = '' if is_notes else '<div class="callout"><h2>Lumina 中文适配版</h2><p>支持中英文数学笔记，附编译示例与说明。</p><div class="links"><a href="lumina-guide.html">使用说明</a><a href="lumina-preview.pdf">PDF 预览</a><a href="lumina-xelatex.zip">下载源码</a></div></div>'
+        featured = ('<div class="library-stats"><span><strong>' + str(len(notes)) + '</strong> 篇公开笔记</span><span><strong>' + str(len(counts)) + '</strong> 个主题方向</span><span>原文 · 译读 · 学习记录</span></div><nav class="library-topics" aria-label="按主题浏览"><a href="notes.html" data-category="all" aria-current="page">全部笔记</a>' + ''.join(f'<a href="notes.html?{esc(urlencode({"category": c}))}" data-category="{esc(c)}">{esc(c)} <span>{n}</span></a>' for c, n in sorted(counts.items())) + '</nav>') if is_notes else '<div class="callout"><h2>Lumina 中文适配版</h2><p>支持中英文数学笔记，附编译示例与说明。</p><div class="links"><a href="lumina-guide.html">使用说明</a><a href="lumina-preview.pdf">PDF 预览</a><a href="lumina-xelatex.zip">下载源码</a></div></div>'
         main = template('catalog.html', eyebrow='Learning notes / 学习笔记' if is_notes else 'Resources / 排版资源',
-            heading=heading, intro='课程学习、阅读记录与专题整理。按分类浏览，也可搜索标题、摘要和标签。' if is_notes else '整理的第三方模板与自己的适配版本。编译环境以各项目说明为准。',
+            heading=heading, intro='把读过的论文、推导过的公式，整理成可以再次出发的线索。' if is_notes else '整理的第三方模板与自己的适配版本。编译环境以各项目说明为准。',
             featured=featured, search_label='搜索笔记' if is_notes else '搜索模板', category_label='内容分类' if is_notes else '编译环境',
             sort_control='<div class="control"><label for="sort">排序</label><select id="sort"><option value="updated">最近更新</option><option value="date">最新发布</option><option value="title">标题</option></select></div>' if is_notes else '',
             count=f'{len(notes) if is_notes else len(resources)} 项内容', results=(''.join(groups) or empty) if is_notes else ''.join(entry(item, 'templates') for item in resources))
-        pages[f'{kind}.html'] = render_layout(heading, heading + '目录与使用资料。', main, page=kind, scripts=scripts)
+        pages[f'{kind}.html'] = render_layout(heading, heading + '目录与使用资料。', main, page=kind, scripts=scripts, body_class='notes-library' if is_notes else '')
     guide = (ROOT / 'templates/lumina.html').read_text(encoding='utf-8')
     guide_sections = [('environment', '编译环境'), ('compile', '编译与运行'), ('structure', '文件与修改入口'),
                       ('example', '正文示例'), ('all-environments', '全部环境索引与示例'), ('verification', '验证与限制'), ('attribution', '作者与许可')]

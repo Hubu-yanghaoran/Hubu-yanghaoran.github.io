@@ -1,0 +1,19 @@
+:root { color-scheme: light; font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; color: #34465b; background: #e4e9ed; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+.viewer-toolbar { height: 48px; padding: 5px 12px; display: flex; justify-content: space-between; gap: 10px; background: #f8fafb; border-bottom: 1px solid #cbd6de; }
+.page-controls,.zoom-controls { display: flex; gap: 6px; align-items: center; }
+button,input { font: inherit; font-size: 13px; color: #34465b; background: #fff; border: 1px solid #cad6df; border-radius: 3px; height: 34px; }
+button { padding: 3px 10px; cursor: pointer; min-width: 34px; }
+button:hover { background: #eaf0f5; }
+button:disabled { opacity: .45; cursor: default; }
+button:focus-visible,input:focus-visible,#viewer-container:focus-visible { outline: 2px solid #126786; outline-offset: -2px; }
+input { width: 52px; text-align: center; padding: 2px; }
+#page-count { font-size: 12px; white-space: nowrap; }
+#viewer-container { position: absolute; inset: 48px 0 0; overflow: auto; }
+#viewer-status { position: absolute; top: 56px; left: 16px; right: 16px; z-index: 2; padding: 14px; margin: 0; background: #fff; border-radius: 4px; font-size: 14px; }
+#viewer-status[hidden] { display: none; }
+.viewer-error { color: #8b2837; background: #fff; padding: 18px; position: relative; z-index: 3; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.pdfViewer .page { border: 0; margin: 12px auto; box-shadow: 0 2px 8px #20324920; }
+@media (max-width: 420px) { .viewer-toolbar { padding: 5px 6px; gap: 5px; } .page-controls,.zoom-controls { gap: 3px; } button { padding: 2px 5px; min-width: 28px; } input { width: 40px; } #fit { font-size: 12px; } }

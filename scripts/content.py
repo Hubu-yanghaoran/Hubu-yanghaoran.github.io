@@ -28,14 +28,20 @@ def detail_page(item, resources, prefix="../../"):
     esc = lambda value: html.escape(str(value), quote=True)
     main = item.get("main", "")
     links, files, body, toc = [], [], "", ""
+    pdfs = []
     for resource in resources:
         url, label = resource["url"], resource["label"]
         url = prefix + url if not urlsplit(url).scheme else url
+        if Path(resource.get("file", "")).suffix.lower() == '.pdf':
+            pdfs.append((resource, url))
         if resource.get("file") == main:
             if "markdown" in resource:
                 links.append('<a href="#note-body">阅读主文档</a>')
                 rendered, toc, _ = markdown_document(resource["markdown"], resource.get("image_handler"), resource.get("link_handler"), item.get('document_title', item['title']))
                 body = '<section id="note-body" class="section note-body" aria-label="笔记正文">' + rendered + '</section>'
+            elif Path(main).suffix.lower() == '.pdf':
+                links.append('<a href="#pdf-reader">在线阅读</a>')
+                links.append(f'<a href="{esc(url)}" download>下载 PDF</a>')
             else:
                 links.append(f'<a href="{esc(url)}">阅读主文档</a>')
         files.append(f'<li><a href="{esc(url)}">{esc(label)}</a></li>')
@@ -49,6 +55,23 @@ def detail_page(item, resources, prefix="../../"):
     if not isinstance(paragraphs, list):
         raise ValueError("instructions must be an array")
     sections = body
+    if pdfs:
+        selected, selected_url = next(((r, u) for r, u in pdfs if r.get('file') == main), pdfs[0])
+        viewer_url = lambda resource: prefix + 'assets/pdfjs/viewer.html?file=' + quote('../../' + resource['url'], safe='')
+        choices = ''.join(
+            f'<a class="pdf-choice" href="{esc(u)}" data-pdf-url="{esc(u)}" data-viewer-url="{esc(viewer_url(r))}"'
+            f' aria-current="{"true" if r is selected else "false"}">{esc(r["label"])}</a>'
+            for r, u in pdfs)
+        sections += f'''<section id="pdf-reader" class="pdf-reader section" aria-labelledby="pdf-heading">
+<div class="reader-heading"><div><div class="eyebrow">READING ROOM / 在线阅读</div><h2 id="pdf-heading">留在这里，读完这一篇。</h2></div><span class="reader-format">PDF</span></div>
+<nav class="pdf-choices" aria-label="选择阅读文档">{choices}</nav>
+<div class="pdf-toolbar"><span id="pdf-current" role="status">{esc(selected['label'])}</span><div class="reader-actions">
+<a id="pdf-open" href="{esc(selected_url)}" target="_blank" rel="noopener">独立窗口 ↗</a>
+<a id="pdf-download" href="{esc(selected_url)}" download>下载</a>
+<button id="pdf-expand" type="button" aria-pressed="false" hidden>展开阅读</button></div></div>
+<iframe id="pdf-frame" class="pdf-frame" src="{esc(viewer_url(selected))}" title="{esc(selected['label'])}在线预览" allow="fullscreen"></iframe>
+<p class="pdf-help">可在预览中滚动、缩放。若浏览器未显示 PDF，请选择“独立窗口”或下载阅读。</p>
+</section>'''
     if files:
         sections += '<section class="section"><h2 class="section-title">文档与附件</h2><ul>' + "".join(files) + "</ul></section>"
     if item.get("engine") or paragraphs:
@@ -65,9 +88,11 @@ def detail_page(item, resources, prefix="../../"):
         dates += ' · 更新：' + esc(item['updated'])
     heading += f'<p class="meta">{dates}</p><div class="links">{"".join(links)}</div></header>'
     sidebar = f'<h2>学习笔记</h2><p>{esc(item.get("category", "学习笔记"))}</p><a href="{prefix}notes.html">全部笔记</a>{toc}'
-    head = f'<link rel="stylesheet" href="{prefix}assets/katex/katex.min.css"><script src="{prefix}assets/katex/katex.min.js" defer></script><script src="{asset_url("reader.js", prefix)}" defer></script>' if body else ''
+    head = f'<link rel="stylesheet" href="{prefix}assets/katex/katex.min.css"><script src="{prefix}assets/katex/katex.min.js" defer></script>' if body else ''
+    scripts = f'<script src="{asset_url("reader.js", prefix)}" defer></script>'
     return render_layout(item['title'], item.get('description', ''), heading + sections,
-                         page='notes', prefix=prefix, sidebar=sidebar, head=head, body_class='article-page')
+                         page='notes', prefix=prefix, sidebar=sidebar, head=head, scripts=scripts,
+                         body_class='article-page pdf-page' if pdfs else 'article-page')
 
 
 def collect_content(root):
@@ -148,6 +173,7 @@ def collect_content(root):
         entries.append({"title": item["title"], "description": item.get("description", ""),
                         "category": item.get("category", "学习笔记"), "date": item.get("date", ""),
                         "updated": item.get("updated", item.get("date", "")),
-                        "tags": item.get("tags", []), "kind": "note", "url": url})
+                        "tags": item.get("tags", []), "format": Path(item.get('main', '')).suffix.lstrip('.').upper(),
+                        "kind": "note", "url": url})
         pages[url] = detail_page(item, resources)
     return entries, copies, pages, migrated

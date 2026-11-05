@@ -68,6 +68,8 @@ python scripts/check_links.py
 
 Python 依赖已附带，可离线构建。数学资源也在本地，不使用外部 CDN。
 
+PDF 笔记在详情页内直接预览，支持连续滚动、页码跳转、缩放与中英文版本切换；“展开阅读”可加宽阅读区。预览使用 assets/pdfjs/ 中固定版本的 Mozilla PDF.js，不依赖外部 CDN 或浏览器 PDF 插件。禁用 JavaScript 时仍可独立打开或下载 PDF。新增 PDF 只需按 content/ 的规范登记 main 与 attachments，无需逐篇修改页面。
+
 ## 当前视觉方向（第九批）
 
 沿原网站的学术风格细化：白色背景、深蓝衬线姓名、蓝色链接、个人资料侧栏和顺序栏目。第五、六批的绿金风格与装饰首页已撤下。设计方向记录在 DESIGN.md 中；逐批验收文件和截图保留历史状态。

@@ -19,6 +19,20 @@
   };
   function entry(item, type) {
     const result = node('article', undefined, 'entry');
+    if (type === 'notes') {
+      result.classList.add('note-card');
+      const format = item.format || '笔记';
+      const top = node('div', undefined, 'note-card-top');
+      top.append(node('span', format, 'note-format'), node('span', (item.tags || []).includes('论文翻译') ? '论文译读' : '学习记录'));
+      const heading = node('h3');
+      heading.append(link(item.title, item.url));
+      const footer = node('div', undefined, 'note-card-footer');
+      footer.append(node('span', [item.updated || item.date, item.category].filter(Boolean).join(' · '), 'meta'), link(format === 'PDF' ? '在线阅读 ↗' : '阅读笔记 ↗', item.url));
+      const labels = tags(item.tags || []);
+      labels.className = 'note-tags';
+      result.append(top, heading, node('p', item.description || '', 'note-description'), labels, footer);
+      return result;
+    }
     const heading = node('h3');
     heading.append(item.url ? link(item.title || item.name, item.url) : node('span', item.title || item.name));
     result.append(heading, node('p', item.description || item.style || ''));
@@ -44,7 +58,13 @@
   [...new Set(data.flatMap(categories))].sort((a,b) => a.localeCompare(b, 'zh-CN')).forEach(category => {
     const option = node('option', category); option.value = category; select.append(option);
   });
-  const expanded = new Map();
+  const topicLinks = [...document.querySelectorAll('[data-category]')];
+  topicLinks.forEach(topic => topic.addEventListener('click', event => {
+    if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    select.value = topic.dataset.category;
+    update();
+  }));
   function readUrl() {
     const params = new URLSearchParams(location.search);
     search.value = params.get('q') || '';
@@ -52,6 +72,10 @@
     if (sort) sort.value = ['updated','date','title'].includes(params.get('sort')) ? params.get('sort') : 'updated';
   }
   function update(writeUrl = true) {
+    topicLinks.forEach(topic => {
+      if (topic.dataset.category === select.value) topic.setAttribute('aria-current', 'page');
+      else topic.removeAttribute('aria-current');
+    });
     const query = search.value.trim().toLocaleLowerCase();
     const terms = query.split(/\s+/).filter(Boolean);
     const filtered = data.filter(item => {
@@ -64,15 +88,12 @@
       filtered.forEach(item => {const category = categories(item)[0]; if (!groups.has(category)) groups.set(category, []); groups.get(category).push(item);});
       count.textContent = `${groups.size} 个分类 · ${filtered.length} / ${data.length} 篇笔记`;
       list.replaceChildren(...[...groups].sort(([a],[b]) => a.localeCompare(b,'zh-CN')).map(([category,items]) => {
-        const group = node('details', undefined, 'note-category');
-        const filtering = Boolean(query) || select.value !== 'all';
-        group.open = filtering || Boolean(expanded.get(category));
-        const summary = node('summary');
-        summary.append(node('span',category,'category-name'),node('span',`${items.length} 篇笔记`,'category-count'));
+        const group = node('section', undefined, 'note-category');
+        const summary = node('div', undefined, 'category-heading');
+        summary.append(node('h2',category),node('span',`${String(items.length).padStart(2, '0')} 篇笔记`,'category-count'));
         const body = node('div',undefined,'category-body');
         body.append(...items.map(item => entry(item,'notes')));
         group.append(summary,body);
-        group.addEventListener('toggle', () => {if (!filtering && group.isConnected) expanded.set(category,group.open);});
         return group;
       }));
     } else {
