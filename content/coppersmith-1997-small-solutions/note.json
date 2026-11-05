@@ -15,11 +15,16 @@
     {
       "file": "Coppersmith-1997-Small-Solutions-to-Polynomial-Equations-and-Low-Exponent-RSA-Vulnerabilities-中文译本.pdf",
       "label": "中文译本 · PDF"
+    },
+    {
+      "file": "coppersmith.pdf",
+      "label": "英文原文 · PDF"
     }
   ],
   "author": "原文作者：Don Coppersmith",
   "instructions": [
     "原论文：Don Coppersmith（1997），Small Solutions to Polynomial Equations, and Low Exponent RSA Vulnerabilities。",
-    "本页收录用户提供的中文译本 PDF，点击“阅读主文档”可打开，亦可从附件链接下载。"
-  ]
+    "本页同时收录中文译本与英文原文 PDF。点击“阅读主文档”打开中文译本，也可在“文档与附件”中选择原文对照阅读或下载。"
+  ],
+  "updated": "2026-11-05"
 }
