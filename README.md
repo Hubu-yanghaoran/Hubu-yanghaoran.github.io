@@ -100,3 +100,9 @@ site-config.json 中的 avatar、affiliation、location、email 为空时不显�
 - https://github.com/academicpages/academicpages.github.io
 
 详细步骤见上一级第七批验收.md。当前设计不需要在线字体、外部背景图片或额外动画库。
+
+## 外观与笔记视图
+
+顶部“外观”可选择学术蓝、纸页或数字花园三套风格，并调整网页笔记的正文字体与字号。学习笔记目录提供卡片、列表、书架三种展示方式。设置会保存在当前浏览器，可一键恢复默认；浏览器禁用本地存储时，仅在本页生效。
+
+样式切换保留搜索、分类与排序。笔记目录的 `view=cards`、`view=list`、`view=shelf` 参数可用于分享视图。开源参考与实现位置见 [DESIGN-REFERENCES.md](DESIGN-REFERENCES.md)。

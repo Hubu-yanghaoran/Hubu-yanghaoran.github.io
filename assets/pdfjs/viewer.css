@@ -17,3 +17,8 @@ input { width: 52px; text-align: center; padding: 2px; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
 .pdfViewer .page { border: 0; margin: 12px auto; box-shadow: 0 2px 8px #20324920; }
 @media (max-width: 420px) { .viewer-toolbar { padding: 5px 6px; gap: 5px; } .page-controls,.zoom-controls { gap: 3px; } button { padding: 2px 5px; min-width: 28px; } input { width: 40px; } #fit { font-size: 12px; } }
+:root { --viewer-surface: #f8fafb; --viewer-ink: #34465b; --viewer-line: #cad6df; --viewer-backdrop: #e4e9ed; }
+:root[data-theme=paper] { --viewer-surface: #fffcf5; --viewer-ink: #51463d; --viewer-line: #ded4c4; --viewer-backdrop: #e7dfd1; }
+:root[data-theme=garden] { --viewer-surface: #f5faf6; --viewer-ink: #3a5145; --viewer-line: #d7e3db; --viewer-backdrop: #e0e9e3; }
+:root { background: var(--viewer-backdrop); color: var(--viewer-ink); }
+.viewer-toolbar,button,input { background: var(--viewer-surface); color: var(--viewer-ink); border-color: var(--viewer-line); }

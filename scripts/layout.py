@@ -72,7 +72,8 @@ def render_layout(title, description, main, page='home', prefix='', sidebar=None
     return template('base.html', title=esc(title), name=esc(site['name']), description=esc(description),
         prefix=prefix, navigation=''.join(nav), sidebar=profile(site, prefix) if sidebar is None else sidebar,
         sidebar_label=sidebar_label or ('个人信息' if sidebar is None else '笔记导航'), main=main,
-        page=page, head=head, scripts=scripts, body_class=body_class, stylesheet=asset_url('styles.css', prefix))
+        page=page, head=head, scripts=scripts, body_class=body_class, stylesheet=asset_url('styles.css', prefix),
+        appearance_script=asset_url('appearance.js', prefix), appearance_stylesheet=asset_url('appearance.css', prefix))
 
 def public_pages(notes, resources):
     site = config()
@@ -104,6 +105,7 @@ def public_pages(notes, resources):
             heading=heading, intro='把读过的论文、推导过的公式，整理成可以再次出发的线索。' if is_notes else '整理的第三方模板与自己的适配版本。编译环境以各项目说明为准。',
             featured=featured, search_label='搜索笔记' if is_notes else '搜索模板', category_label='内容分类' if is_notes else '编译环境',
             sort_control='<div class="control"><label for="sort">排序</label><select id="sort"><option value="updated">最近更新</option><option value="date">最新发布</option><option value="title">标题</option></select></div>' if is_notes else '',
+            view_control='<div class="library-display" data-enhance hidden><div><span class="display-label">你的笔记，你的浏览方式</span><span id="view-description" role="status">卡片展示摘要与标签，适合探索阅读。</span></div><div class="view-switch" role="group" aria-label="笔记展示样式"><button type="button" data-notes-view="cards" aria-pressed="true">▦ 卡片</button><button type="button" data-notes-view="list" aria-pressed="false">☰ 列表</button><button type="button" data-notes-view="shelf" aria-pressed="false">▥ 书架</button></div></div>' if is_notes else '',
             count=f'{len(notes) if is_notes else len(resources)} 项内容', results=(''.join(groups) or empty) if is_notes else ''.join(entry(item, 'templates') for item in resources))
         pages[f'{kind}.html'] = render_layout(heading, heading + '目录与使用资料。', main, page=kind, scripts=scripts, body_class='notes-library' if is_notes else '')
     guide = (ROOT / 'templates/lumina.html').read_text(encoding='utf-8')

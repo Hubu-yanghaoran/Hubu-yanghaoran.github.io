@@ -104,6 +104,16 @@ class ContentTests(unittest.TestCase):
             self.assertIn('Unique note', pages[name])
             self.assertIn('content/example/index.html', pages[name])
 
+    def test_appearance_is_shared_but_view_switch_is_only_in_note_catalog(self):
+        pages = public_pages([{'title': 'Note', 'url': 'content/example/index.html'}], [])
+        for name in ('index.html', 'notes.html', 'templates.html', 'lumina-guide.html'):
+            self.assertIn('appearance.js?v=', pages[name])
+            self.assertIn('appearance.css?v=', pages[name])
+            self.assertIn('id="site-theme"', pages[name])
+        for view in ('cards', 'list', 'shelf'):
+            self.assertIn(f'data-notes-view="{view}"', pages['notes.html'])
+            self.assertNotIn(f'data-notes-view="{view}"', pages['templates.html'])
+
     def test_unlisted_local_link_rejected(self):
         self.main.write_text('[private](private.txt)', encoding='utf-8')
         with self.assertRaisesRegex(ValueError, '登记'):

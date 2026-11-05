@@ -44,7 +44,7 @@ notes.extend(unified_entries)
 project_files.update(unified_files)
 project_pages.update(legacy_note_pages)
 project_pages.update(unified_pages)
-required = ["styles.css", "app.js", "reader.js",
+required = ["styles.css", "app.js", "reader.js", "appearance.js", "appearance.css",
             "lumina-preview.pdf", "lumina-xelatex.zip"]
 for name in required:
     if not (ROOT / name).is_file():

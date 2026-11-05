@@ -9,6 +9,8 @@
   <meta name="theme-color" content="#ffffff">
   <link rel="icon" href="${prefix}assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="$stylesheet">
+  <link rel="stylesheet" href="$appearance_stylesheet">
+  <script src="$appearance_script"></script>
   $head
 </head>
 <body class="$body_class" data-page="$page">
@@ -16,7 +18,22 @@
   <header>
     <div class="masthead">
       <a class="brand" href="${prefix}index.html">$name</a>
-      <nav class="nav" aria-label="主导航">$navigation</nav>
+      <div class="masthead-tools"><nav class="nav" aria-label="主导航">$navigation</nav>
+      <details class="appearance-panel" data-enhance hidden>
+        <summary>外观 <span aria-hidden="true">◐</span></summary>
+        <div class="appearance-options">
+          <div class="settings-heading"><strong>让阅读更合心意</strong><span>自动记住这台设备上的选择</span></div>
+          <label for="site-theme">网站风格</label>
+          <select id="site-theme" data-preference="theme"><option value="academic">学术蓝 · 清晰克制</option><option value="paper">纸页 · 温润书刊</option><option value="garden">数字花园 · 清新现代</option></select>
+          <label for="reading-font">网页笔记字体</label>
+          <select id="reading-font" data-preference="font"><option value="sans">无衬线 · 清晰</option><option value="serif">衬线 · 书刊</option></select>
+          <label for="reading-size">网页笔记字号</label>
+          <select id="reading-size" data-preference="size"><option value="16">标准 · 16px</option><option value="18">舒适 · 18px</option><option value="20">大字 · 20px</option></select>
+          <p>字体设置用于网页正文；PDF 保留原排版，可在阅读器中缩放。</p>
+          <button type="button" id="appearance-reset">恢复默认设置</button>
+          <span class="settings-status" id="appearance-status" role="status" aria-live="polite"></span>
+        </div>
+      </details></div>
     </div>
   </header>
   <div class="layout">

@@ -2,6 +2,13 @@ import * as pdfjsLib from './pdf.min.mjs';
 globalThis.pdfjsLib = pdfjsLib;
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('./pdf.worker.min.mjs', import.meta.url).href;
 const status = document.querySelector('#viewer-status');
+// Keep the reader chrome in the site's palette; document pages retain their colors.
+try {
+  const parentRoot = window.parent.document.documentElement;
+  const syncTheme = () => { document.documentElement.dataset.theme = parentRoot.dataset.theme || 'academic'; };
+  syncTheme();
+  new MutationObserver(syncTheme).observe(parentRoot, { attributes: true, attributeFilter: ['data-theme'] });
+} catch { /* A standalone or cross-origin embedding keeps the default palette. */ }
 try {
   const { EventBus, PDFViewer, PDFLinkService } = await import('./pdf_viewer.mjs');
   const file = new URLSearchParams(location.search).get('file');
