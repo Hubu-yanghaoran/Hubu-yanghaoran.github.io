@@ -1,0 +1,26 @@
+{
+  "title": "重新审视一元模方程的小根求解（中文译本）",
+  "description": "介绍一元模方程小根的求解方法，并比较其与 Coppersmith 方法、对偶格及 LLL 格基约化之间的关系。",
+  "category": "密码学",
+  "date": "2026-11-05",
+  "tags": [
+    "论文翻译",
+    "Howgrave-Graham",
+    "小根",
+    "格",
+    "LLL",
+    "RSA"
+  ],
+  "main": "Howgrave-Graham-1997-Finding-Small-Roots-of-Univariate-Modular-Equations-Revisited-中文译本.pdf",
+  "attachments": [
+    {
+      "file": "Howgrave-Graham-1997-Finding-Small-Roots-of-Univariate-Modular-Equations-Revisited-中文译本.pdf",
+      "label": "中文译本 · PDF"
+    }
+  ],
+  "author": "原文作者：Nicholas Howgrave-Graham",
+  "instructions": [
+    "原论文：Nicholas Howgrave-Graham（1997），Finding Small Roots of Univariate Modular Equations Revisited。",
+    "本页收录用户提供的中文译本 PDF，点击“阅读主文档”可打开，亦可从附件链接下载。"
+  ]
+}

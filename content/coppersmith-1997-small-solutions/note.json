@@ -1,0 +1,25 @@
+{
+  "title": "多项式方程的小解与低指数 RSA 的脆弱性（中文译本）",
+  "description": "介绍一元模多项式与二元整系数多项式的小解方法，以及低指数 RSA 与部分信息因数分解的应用。",
+  "category": "密码学",
+  "date": "2026-11-05",
+  "tags": [
+    "论文翻译",
+    "Coppersmith",
+    "小根",
+    "格",
+    "RSA"
+  ],
+  "main": "Coppersmith-1997-Small-Solutions-to-Polynomial-Equations-and-Low-Exponent-RSA-Vulnerabilities-中文译本.pdf",
+  "attachments": [
+    {
+      "file": "Coppersmith-1997-Small-Solutions-to-Polynomial-Equations-and-Low-Exponent-RSA-Vulnerabilities-中文译本.pdf",
+      "label": "中文译本 · PDF"
+    }
+  ],
+  "author": "原文作者：Don Coppersmith",
+  "instructions": [
+    "原论文：Don Coppersmith（1997），Small Solutions to Polynomial Equations, and Low Exponent RSA Vulnerabilities。",
+    "本页收录用户提供的中文译本 PDF，点击“阅读主文档”可打开，亦可从附件链接下载。"
+  ]
+}
