@@ -22,7 +22,17 @@ jobs:
           node-version: '24'
       - run: npx --yes pnpm@9.14.4 install --frozen-lockfile
       - run: node_modules/.bin/astro check
-      - run: node_modules/.bin/astro build && node_modules/.bin/pagefind --site dist
+      - name: Build and index website
+        run: |
+          set +e
+          node_modules/.bin/astro build > build-output.log 2>&1
+          build_status=$?
+          cat build-output.log
+          if [ "$build_status" -ne 0 ]; then
+            python3 -c 'from pathlib import Path; lines=Path("build-output.log").read_text().splitlines(); [print("::error::" + line.replace("%", "%25")) for line in lines[-25:]]'
+            exit "$build_status"
+          fi
+          node_modules/.bin/pagefind --site dist
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
