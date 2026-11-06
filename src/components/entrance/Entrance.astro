@@ -1,0 +1,24 @@
+---
+import { entranceConfig as config } from './config';
+interface Props { name: string }
+const { name } = Astro.props;
+const duration = Math.max(600, Math.min(config.duration, 2400));
+---
+{config.enabled && <div class="entrance" data-entrance data-frequency={config.frequency} data-storage-key={config.storageKey} style={`--entrance-duration:${duration}ms`} aria-hidden="true" hidden>
+  <div class="entrance-signature"><span class="entrance-monogram">{config.monogram}</span><span class="entrance-rule"></span><span class="entrance-name">{name}</span></div>
+</div>}
+<script>
+import './entrance';
+</script>
+<style>
+.entrance[hidden] { display: none; }
+.entrance { position: fixed; inset: 0; z-index: 9999; display: grid; place-items: center; pointer-events: none; background: var(--card-bg, #fff); animation: entrance-reveal var(--entrance-duration) cubic-bezier(.22,1,.36,1) both; }
+.entrance-signature { display: flex; flex-direction: column; align-items: center; gap: 16px; animation: signature-reveal var(--entrance-duration) ease both; }
+.entrance-monogram { font: 500 54px/1.1 Georgia,serif; letter-spacing: -.04em; color: var(--primary, #5799db); }
+.entrance-name { font-size: 13px; letter-spacing: .15em; color: var(--text-color, #526278); }
+.entrance-rule { height: 2px; width: 42px; border-radius: 2px; background: var(--primary, #5799db); transform-origin: center; animation: rule-reveal var(--entrance-duration) ease both; }
+@keyframes entrance-reveal { 0%,40% { opacity: 1; } 100% { opacity: 0; visibility: hidden; } }
+@keyframes signature-reveal { 0% { opacity: 0; transform: translateY(10px); } 25%,55% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(-8px); } }
+@keyframes rule-reveal { 0% { transform: scaleX(0); } 45%,100% { transform: scaleX(1); } }
+@media (prefers-reduced-motion: reduce) { .entrance { display: none; animation: none; } .entrance * { animation: none; } }
+</style>
