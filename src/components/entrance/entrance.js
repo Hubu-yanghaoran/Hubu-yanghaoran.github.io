@@ -1,5 +1,5 @@
 /** Runs on initial document load; outside Swup's replacement containers. */
-const element = document.querySelector<HTMLElement>('[data-entrance]');
+const element = document.querySelector('[data-entrance]');
 if (element) {
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
   const dismiss = () => { element.hidden = true; };

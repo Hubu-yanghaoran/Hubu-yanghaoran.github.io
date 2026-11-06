@@ -1,5 +1,6 @@
 ---
 import { entranceConfig as config } from './config';
+import entranceScript from './entrance.js?url';
 interface Props { name: string }
 const { name } = Astro.props;
 const duration = Math.max(600, Math.min(config.duration, 2400));
@@ -7,9 +8,7 @@ const duration = Math.max(600, Math.min(config.duration, 2400));
 {config.enabled && <div class="entrance" data-entrance data-frequency={config.frequency} data-storage-key={config.storageKey} style={`--entrance-duration:${duration}ms`} aria-hidden="true" hidden>
   <div class="entrance-signature"><span class="entrance-monogram">{config.monogram}</span><span class="entrance-rule"></span><span class="entrance-name">{name}</span></div>
 </div>}
-<script>
-import './entrance';
-</script>
+<script is:inline src={entranceScript} defer></script>
 <style>
 .entrance[hidden] { display: none; }
 .entrance { position: fixed; inset: 0; z-index: 9999; display: grid; place-items: center; pointer-events: none; background: var(--card-bg, #fff); animation: entrance-reveal var(--entrance-duration) cubic-bezier(.22,1,.36,1) both; }
