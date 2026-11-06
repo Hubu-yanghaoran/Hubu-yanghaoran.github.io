@@ -3,7 +3,8 @@ import MainGridLayout from '../layouts/MainGridLayout.astro';
 import resources from '../data/resources.json';
 ---
 <MainGridLayout title="排版资源" description="LaTeX 模板与排版资料">
-<article class="card-base p-6 md:p-9">
+<article data-pagefind-body data-pagefind-meta="title:排版资源" class="card-base p-6 md:p-9">
+<span class="sr-only" data-pagefind-filter="type">资源</span>
 <h1 class="font-bold text-3xl text-black/90 dark:text-white/90 mb-6">排版资源</h1>
 <div class="mb-6 text-[var(--primary)] flex flex-wrap gap-4"><a href="/lumina-preview.pdf">Lumina 示例 PDF</a><a href="/lumina-xelatex.zip" download>Lumina 源码</a><a href="/assets/einfart-preview.pdf">Einfart 示例 PDF</a><a href="/assets/einfart-original.zip" download>Einfart 源码</a></div>
 {resources.map(item => <section class="py-5 border-t border-black/10 dark:border-white/10"><h2 class="font-bold text-xl text-[var(--primary)]"><a href={item.source}>{item.name}</a></h2><p class="my-2 text-black/70 dark:text-white/70">{item.style}</p><p class="text-sm text-black/50 dark:text-white/50">{item.engine}</p></section>)}

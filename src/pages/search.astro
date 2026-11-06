@@ -1,0 +1,10 @@
+---
+import { getCollection } from 'astro:content';
+import MainGridLayout from '../layouts/MainGridLayout.astro';
+import FullSearch from '../components/FullSearch.svelte';
+const posts=await getCollection('posts',({data})=>!data.draft);
+const categories=[...new Set(posts.map(p=>p.data.category).filter((c):c is string=>!!c))].sort();
+---
+<MainGridLayout title="全站搜索" description="搜索学习笔记、排版资源和论文全文">
+<section class="card-base p-6 md:p-9"><h1 class="font-bold text-3xl text-black/90 dark:text-white/90 mb-3">全站搜索</h1><p class="text-sm text-black/50 dark:text-white/50 mb-6">搜索笔记、排版资源与 PDF 正文。论文结果可直接定位到对应页。快捷键 Ctrl / ⌘ + K。</p><FullSearch categories={categories} client:only="svelte" /><noscript><p>启用 JavaScript 可使用搜索，也可从<a href="/archive/">归档</a>浏览全部笔记。</p></noscript></section>
+</MainGridLayout>

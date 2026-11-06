@@ -1,0 +1,18 @@
+---
+import { getCollection } from 'astro:content';
+import MainGridLayout from '../layouts/MainGridLayout.astro';
+const posts = await getCollection('posts', ({data}) => !data.draft);
+const events = posts.flatMap(post => {
+  const first = {date:post.data.published.toISOString().slice(0,10),title:post.data.title,slug:post.slug,kind:'发布'};
+  const updated = post.data.updated?.toISOString().slice(0,10);
+  return updated && updated !== first.date ? [first,{...first,date:updated,kind:'更新'}] : [first];
+}).sort((a,b)=> b.date.localeCompare(a.date) || a.title.localeCompare(b.title,'zh-CN'));
+const months = [...new Set(events.map(e=>e.date.slice(0,7)))];
+---
+<MainGridLayout title="学习时间线" description="按月份回顾笔记的发布和更新">
+<article class="card-base p-6 md:p-9">
+<h1 class="font-bold text-3xl text-black/90 dark:text-white/90 mb-2">学习时间线</h1>
+<p class="text-black/50 dark:text-white/50 mb-8 text-sm">按月份回顾笔记的发布和更新。</p>
+{months.map(month=><section class="mb-8"><h2 class="font-bold text-xl text-[var(--primary)] mb-5">{month.replace('-', ' 年 ')} 月</h2><ol class="border-l-2 border-[var(--btn-regular-bg)] ml-2 pl-5 space-y-6">{events.filter(e=>e.date.startsWith(month)).map(event=><li><div class="text-sm text-black/50 dark:text-white/50 mb-1"><time datetime={event.date}>{event.date}</time><span class="ml-3">{event.kind}</span></div><a href={'/posts/'+event.slug+'/'} class="font-medium text-black/80 dark:text-white/80 hover:text-[var(--primary)]">{event.title}</a></li>)}</ol></section>)}
+</article>
+</MainGridLayout>

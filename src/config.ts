@@ -43,6 +43,8 @@ export const navBarConfig: NavBarConfig = {
 	links: [
 		LinkPreset.Home,
 		LinkPreset.Archive,
+        { name: "搜索", url: "/search/" },
+        { name: "时间线", url: "/timeline/" },
 		LinkPreset.About,
         { name: "排版资源", url: "/resources/" },
 		{

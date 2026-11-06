@@ -21,6 +21,8 @@ jobs:
         with:
           node-version: '24'
       - run: npx --yes pnpm@9.14.4 install --frozen-lockfile
+      - name: Install PDF text extractor
+        run: sudo apt-get update && sudo apt-get install -y poppler-utils
       - run: node_modules/.bin/astro check
       - name: Build and index website
         run: |
@@ -32,7 +34,7 @@ jobs:
             python3 -c 'from pathlib import Path; lines=Path("build-output.log").read_text().splitlines(); [print("::error::" + line.replace("%", "%25")) for line in lines[-25:]]'
             exit "$build_status"
           fi
-          node_modules/.bin/pagefind --site dist
+          node scripts/build-search.mjs
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

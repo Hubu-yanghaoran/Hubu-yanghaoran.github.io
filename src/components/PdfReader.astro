@@ -22,6 +22,17 @@ class PaperReader extends HTMLElement {
   connectedCallback() {
     this.controller?.abort();
     this.controller = new AbortController();
+    const params = new URLSearchParams(location.search);
+    const target = [...this.querySelectorAll<HTMLAnchorElement>('a[data-viewer]')].find(a => new URL(a.href).pathname === params.get('pdf'));
+    if (target?.dataset.viewer) {
+      const page = Number(params.get('page'));
+      const frame = this.querySelector('iframe');
+      if (frame) frame.src = target.dataset.viewer + (Number.isInteger(page) && page > 0 ? '&page=' + page : '');
+      this.querySelectorAll('a[data-viewer]').forEach(a => a.setAttribute('aria-current', String(a === target)));
+      this.querySelector<HTMLAnchorElement>('[data-open]')!.href = target.href;
+      this.querySelector<HTMLAnchorElement>('[data-download]')!.href = target.href;
+      if (frame) frame.title = target.textContent + '在线预览';
+    }
     this.querySelectorAll<HTMLAnchorElement>('a[data-viewer]').forEach(link => {
       link.addEventListener('click', event => {
         if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;

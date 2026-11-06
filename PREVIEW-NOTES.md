@@ -16,7 +16,7 @@ Node 24 与 pnpm 9.14.4 已验证。依赖按原版 pnpm-lock.yaml 安装。
 cd /workspace/Hubu-yanghaoran.github.io
 ASTRO_TELEMETRY_DISABLED=1 node_modules/.bin/astro check
 ASTRO_TELEMETRY_DISABLED=1 node_modules/.bin/astro build
-node_modules/.bin/pagefind --site dist
+node scripts/build-search.mjs
 ASTRO_TELEMETRY_DISABLED=1 node_modules/.bin/astro preview --host 127.0.0.1
 ```
 

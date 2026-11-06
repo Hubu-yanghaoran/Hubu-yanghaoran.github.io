@@ -1,0 +1,30 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+<site-clock class="card-base block px-5 py-4">
+<div class="flex items-center justify-between text-black/50 dark:text-white/50 text-sm mb-2"><span>北京时间</span><Icon name="material-symbols:schedule-outline-rounded" class="text-lg text-[var(--primary)]" /></div>
+<time class="block text-3xl font-bold text-black/80 dark:text-white/80 tabular-nums" data-clock-time>--:--</time>
+<p class="text-sm text-black/50 dark:text-white/50 mt-1" data-clock-date>日期载入中</p>
+<noscript><p class="text-xs">启用 JavaScript 可显示当前时间。</p></noscript>
+</site-clock>
+<script>
+class SiteClock extends HTMLElement {
+  timer?: ReturnType<typeof setTimeout>;
+  controller?: AbortController;
+  connectedCallback() {
+    this.controller?.abort();this.controller = new AbortController();
+    const update = () => {
+      clearTimeout(this.timer);
+      const now = new Date();
+      const time = this.querySelector('time');
+      if (time) { time.textContent = new Intl.DateTimeFormat('zh-CN', {timeZone:'Asia/Shanghai',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(now);time.dateTime = now.toISOString(); }
+      const date = this.querySelector('[data-clock-date]');
+      if (date) date.textContent = new Intl.DateTimeFormat('zh-CN', {timeZone:'Asia/Shanghai',year:'numeric',month:'long',day:'numeric',weekday:'long'}).format(now);
+      if (!document.hidden) this.timer = setTimeout(update, 60000 - Date.now() % 60000 + 50);
+    };
+    document.addEventListener('visibilitychange', update, {signal:this.controller.signal});update();
+  }
+  disconnectedCallback() {clearTimeout(this.timer);this.controller?.abort();}
+}
+if (!customElements.get('site-clock')) customElements.define('site-clock', SiteClock);
+</script>

@@ -34,6 +34,8 @@ try {
   };
   eventBus.on('pagesinit', () => {
     viewer.currentScaleValue = 'page-width';
+    const requestedPage = Number(new URLSearchParams(location.search).get('page'));
+    if (Number.isInteger(requestedPage) && requestedPage >= 1 && requestedPage <= total) viewer.currentPageNumber = requestedPage;
     document.querySelectorAll('button,input').forEach(control => { control.disabled = false; });
     updatePage();
   });

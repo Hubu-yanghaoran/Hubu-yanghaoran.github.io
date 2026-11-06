@@ -12,6 +12,7 @@ let result: SearchResult[] = [];
 let isSearching = false;
 let pagefindLoaded = false;
 let initialized = false;
+let requestId = 0;
 
 const fakeResult: SearchResult[] = [
 	{
@@ -48,7 +49,8 @@ const setPanelVisibility = (show: boolean, isDesktop: boolean): void => {
 };
 
 const search = async (keyword: string, isDesktop: boolean): Promise<void> => {
-	if (!keyword) {
+	const current = ++requestId;
+	if (!keyword.trim()) {
 		setPanelVisibility(false, isDesktop);
 		result = [];
 		return;
@@ -66,7 +68,7 @@ const search = async (keyword: string, isDesktop: boolean): Promise<void> => {
 		if (import.meta.env.PROD && pagefindLoaded && window.pagefind) {
 			const response = await window.pagefind.search(keyword);
 			searchResults = await Promise.all(
-				response.results.map((item) => item.data()),
+				response.results.slice(0, 8).map((item) => item.data()),
 			);
 		} else if (import.meta.env.DEV) {
 			searchResults = fakeResult;
@@ -75,6 +77,7 @@ const search = async (keyword: string, isDesktop: boolean): Promise<void> => {
 			console.error("Pagefind is not available in production environment.");
 		}
 
+		if (current !== requestId) return;
 		result = searchResults;
 		setPanelVisibility(result.length > 0, isDesktop);
 	} catch (error) {
@@ -87,6 +90,10 @@ const search = async (keyword: string, isDesktop: boolean): Promise<void> => {
 };
 
 onMount(() => {
+    const shortcut = (event: KeyboardEvent) => {
+        if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") {event.preventDefault();location.assign(url("/search/"));}
+    };
+    document.addEventListener("keydown", shortcut);
 	const initializeSearch = () => {
 		initialized = true;
 		pagefindLoaded =
@@ -123,6 +130,7 @@ onMount(() => {
 			}
 		}, 2000); // Adjust timeout as needed
 	}
+    return () => document.removeEventListener("keydown", shortcut);
 });
 
 $: if (initialized && keywordDesktop) {
@@ -185,6 +193,7 @@ top-20 left-4 md:left-[unset] right-4 shadow-2xl rounded-2xl p-2">
             </div>
         </a>
     {/each}
+    <a class="block text-sm text-[var(--primary)] px-3 py-2" href={url("/search/") + "?q=" + encodeURIComponent(keywordDesktop || keywordMobile)}>查看全部结果与筛选 →</a>
 </div>
 
 <style>

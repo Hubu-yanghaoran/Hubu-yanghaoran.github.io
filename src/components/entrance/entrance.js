@@ -1,3 +1,4 @@
+(() => {
 /** Runs on initial document load; outside Swup's replacement containers. */
 const element = document.querySelector('[data-entrance]');
 if (element) {
@@ -19,3 +20,5 @@ if (element) {
   reduced.addEventListener('change', event => { if (event.matches) dismiss(); });
   window.addEventListener('pageshow', event => { if (event.persisted) dismiss(); });
 }
+
+})();
