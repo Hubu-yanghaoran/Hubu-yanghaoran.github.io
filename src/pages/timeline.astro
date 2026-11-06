@@ -3,25 +3,16 @@ import { getCollection } from 'astro:content';
 import MainGridLayout from '../layouts/MainGridLayout.astro';
 const posts = await getCollection('posts', ({data}) => !data.draft);
 const events = posts.flatMap(post => {
-  const first = {date:post.data.published.toISOString().slice(0,10),title:post.data.title,slug:post.slug,kind:'发布',category:post.data.category || '未分类',tags:post.data.tags};
+  const first = {date:post.data.published.toISOString().slice(0,10),title:post.data.title,slug:post.slug,kind:'发布'};
   const updated = post.data.updated?.toISOString().slice(0,10);
   return updated && updated !== first.date ? [first,{...first,date:updated,kind:'更新'}] : [first];
 }).sort((a,b)=> b.date.localeCompare(a.date) || a.title.localeCompare(b.title,'zh-CN'));
-const categories=[...new Set(events.map(e=>e.category))].sort();
-const tags=[...new Set(events.flatMap(e=>e.tags))].sort();
 const months = [...new Set(events.map(e=>e.date.slice(0,7)))];
 ---
 <MainGridLayout title="学习时间线" description="按月份回顾笔记的发布和更新">
 <article class="card-base p-6 md:p-9">
 <h1 class="font-bold text-3xl text-black/90 dark:text-white/90 mb-2">学习时间线</h1>
 <p class="text-black/50 dark:text-white/50 mb-8 text-sm">按月份回顾笔记的发布和更新。</p>
-<learning-timeline><div data-timeline-controls hidden class="flex flex-wrap gap-3 text-sm text-black/70 dark:text-white/70 mb-6"><label>主题 <select data-category class="bg-[var(--card-bg)] rounded-lg p-2"><option value="">全部</option>{categories.map(c=><option>{c}</option>)}</select></label><label>标签 <select data-tag class="bg-[var(--card-bg)] rounded-lg p-2"><option value="">全部</option>{tags.map(t=><option>{t}</option>)}</select></label><label>视图 <select data-view class="bg-[var(--card-bg)] rounded-lg p-2"><option value="timeline">时间线</option><option value="list">列表</option></select></label></div><p data-timeline-empty hidden role="status" class="py-6 text-black/50 dark:text-white/50">没有匹配的学习记录。</p>
-{months.map(month=><section data-month class="mb-8"><h2 class="font-bold text-xl text-[var(--primary)] mb-5">{month.replace('-', ' 年 ')} 月</h2><ol class="border-l-2 border-[var(--btn-regular-bg)] ml-2 pl-5 space-y-6">{events.filter(e=>e.date.startsWith(month)).map(event=><li data-event data-category={event.category} data-tags={JSON.stringify(event.tags)}><div class="text-sm text-black/50 dark:text-white/50 mb-1"><time datetime={event.date}>{event.date}</time><span class="ml-3">{event.kind}</span></div><a href={'/posts/'+event.slug+'/'} class="font-medium text-black/80 dark:text-white/80 hover:text-[var(--primary)]">{event.title}</a></li>)}</ol></section>)}
-</learning-timeline></article>
+{months.map(month=><section class="mb-8"><h2 class="font-bold text-xl text-[var(--primary)] mb-5">{month.replace('-', ' 年 ')} 月</h2><ol class="border-l-2 border-[var(--btn-regular-bg)] ml-2 pl-5 space-y-6">{events.filter(e=>e.date.startsWith(month)).map(event=><li><div class="text-sm text-black/50 dark:text-white/50 mb-1"><time datetime={event.date}>{event.date}</time><span class="ml-3">{event.kind}</span></div><a href={'/posts/'+event.slug+'/'} class="font-medium text-black/80 dark:text-white/80 hover:text-[var(--primary)]">{event.title}</a></li>)}</ol></section>)}
+</article>
 </MainGridLayout>
-
-<style>learning-timeline[data-mode=list] ol{border:0;padding-left:0;margin-left:0}learning-timeline[data-mode=list] li{display:grid;grid-template-columns:130px 1fr;gap:16px;border-bottom:1px solid var(--line-divider);padding:12px 0}@media(max-width:600px){learning-timeline[data-mode=list] li{display:block}}</style>
-<script>
-class LearningTimeline extends HTMLElement{connectedCallback(){(this.querySelector('[data-timeline-controls]') as HTMLElement).hidden=false;const update=()=>{const category=this.querySelector<HTMLSelectElement>('select[data-category]')!.value;const tag=this.querySelector<HTMLSelectElement>('select[data-tag]')!.value;this.dataset.mode=this.querySelector<HTMLSelectElement>('select[data-view]')!.value;let count=0;this.querySelectorAll<HTMLElement>('[data-event]').forEach(item=>{item.hidden=!!((category&&item.dataset.category!==category)||(tag&&!JSON.parse(item.dataset.tags||'[]').includes(tag)));if(!item.hidden)count++;});this.querySelectorAll<HTMLElement>('[data-month]').forEach(month=>month.hidden=![...month.querySelectorAll<HTMLElement>('[data-event]')].some(item=>!item.hidden));(this.querySelector('[data-timeline-empty]') as HTMLElement).hidden=count>0;};this.onchange=update;update();}}
-if(!customElements.get('learning-timeline'))customElements.define('learning-timeline',LearningTimeline);
-</script>

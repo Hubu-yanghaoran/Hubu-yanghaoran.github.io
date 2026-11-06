@@ -1,6 +1,5 @@
 ---
 import path from "node:path";
-import ReadingControls from "../../components/reading/ReadingControls.astro";
 import PdfReader from "../../components/PdfReader.astro";
 import License from "@components/misc/License.astro";
 import Markdown from "@components/misc/Markdown.astro";
@@ -106,7 +105,6 @@ const jsonLd = {
             }
 
 
-            <ReadingControls slug={entry.slug} />
             <PdfReader documents={entry.data.pdfs} />
             <Markdown class="mb-6 markdown-content onload-animation">
                 <Content />

@@ -3,7 +3,6 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 
-import SurfaceTheme from "@components/surface/SurfaceTheme.astro";
 import Entrance from "@components/entrance/Entrance.astro";
 import ConfigCarrier from "@components/ConfigCarrier.astro";
 import { profileConfig, siteConfig } from "@/config";
@@ -81,7 +80,6 @@ const bannerOffset =
 	<head>
 
 		<title>{pageTitle}</title>
-        <SurfaceTheme />
 
 		<meta charset="UTF-8" />
 		<meta name="description" content={description || pageTitle}>
