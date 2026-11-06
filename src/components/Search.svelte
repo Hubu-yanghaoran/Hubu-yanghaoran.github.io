@@ -4,146 +4,24 @@ import { i18n } from "@i18n/translation";
 import Icon from "@iconify/svelte";
 import { url } from "@utils/url-utils.ts";
 import { onMount } from "svelte";
+import { searchTitles } from '../utils/title-search';
 import type { SearchResult } from "@/global";
-
-let keywordDesktop = "";
-let keywordMobile = "";
-let result: SearchResult[] = [];
-let isSearching = false;
-let pagefindLoaded = false;
-let initialized = false;
-let requestId = 0;
-
-const fakeResult: SearchResult[] = [
-	{
-		url: url("/"),
-		meta: {
-			title: "This Is a Fake Search Result",
-		},
-		excerpt:
-			"Because the search cannot work in the <mark>dev</mark> environment.",
-	},
-	{
-		url: url("/"),
-		meta: {
-			title: "If You Want to Test the Search",
-		},
-		excerpt: "Try running <mark>npm build && npm preview</mark> instead.",
-	},
-];
-
-const togglePanel = () => {
-	const panel = document.getElementById("search-panel");
-	panel?.classList.toggle("float-panel-closed");
-};
-
-const setPanelVisibility = (show: boolean, isDesktop: boolean): void => {
-	const panel = document.getElementById("search-panel");
-	if (!panel || !isDesktop) return;
-
-	if (show) {
-		panel.classList.remove("float-panel-closed");
-	} else {
-		panel.classList.add("float-panel-closed");
-	}
-};
-
-const search = async (keyword: string, isDesktop: boolean): Promise<void> => {
-	const current = ++requestId;
-	if (!keyword.trim()) {
-		setPanelVisibility(false, isDesktop);
-		result = [];
-		return;
-	}
-
-	if (!initialized) {
-		return;
-	}
-
-	isSearching = true;
-
-	try {
-		let searchResults: SearchResult[] = [];
-
-		if (import.meta.env.PROD && pagefindLoaded && window.pagefind) {
-			const response = await window.pagefind.search(keyword);
-			searchResults = await Promise.all(
-				response.results.slice(0, 8).map((item) => item.data()),
-			);
-		} else if (import.meta.env.DEV) {
-			searchResults = fakeResult;
-		} else {
-			searchResults = [];
-			console.error("Pagefind is not available in production environment.");
-		}
-
-		if (current !== requestId) return;
-		result = searchResults;
-		setPanelVisibility(result.length > 0, isDesktop);
-	} catch (error) {
-		console.error("Search error:", error);
-		result = [];
-		setPanelVisibility(false, isDesktop);
-	} finally {
-		isSearching = false;
-	}
-};
-
-onMount(() => {
-    const shortcut = (event: KeyboardEvent) => {
-        if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") {event.preventDefault();location.assign(url("/search/"));}
-    };
-    document.addEventListener("keydown", shortcut);
-	const initializeSearch = () => {
-		initialized = true;
-		pagefindLoaded =
-			typeof window !== "undefined" &&
-			!!window.pagefind &&
-			typeof window.pagefind.search === "function";
-		console.log("Pagefind status on init:", pagefindLoaded);
-		if (keywordDesktop) search(keywordDesktop, true);
-		if (keywordMobile) search(keywordMobile, false);
-	};
-
-	if (import.meta.env.DEV) {
-		console.log(
-			"Pagefind is not available in development mode. Using mock data.",
-		);
-		initializeSearch();
-	} else {
-		document.addEventListener("pagefindready", () => {
-			console.log("Pagefind ready event received.");
-			initializeSearch();
-		});
-		document.addEventListener("pagefindloaderror", () => {
-			console.warn(
-				"Pagefind load error event received. Search functionality will be limited.",
-			);
-			initializeSearch(); // Initialize with pagefindLoaded as false
-		});
-
-		// Fallback in case events are not caught or pagefind is already loaded by the time this script runs
-		setTimeout(() => {
-			if (!initialized) {
-				console.log("Fallback: Initializing search after timeout.");
-				initializeSearch();
-			}
-		}, 2000); // Adjust timeout as needed
-	}
-    return () => document.removeEventListener("keydown", shortcut);
+let keywordDesktop='',keywordMobile='',result:SearchResult[]=[],initialized=false,request=0;
+const togglePanel=()=>document.getElementById('search-panel')?.classList.toggle('float-panel-closed');
+function visible(show:boolean,desktop:boolean){if(desktop)document.getElementById('search-panel')?.classList.toggle('float-panel-closed',!show);}
+async function search(keyword:string,desktop:boolean){
+ const current=++request;
+ if(!keyword.trim()){result=[];visible(false,desktop);return;}
+ try {const matches=await searchTitles(keyword);if(current!==request)return;result=matches.slice(0,8);visible(true,desktop);}
+ catch{if(current===request){result=[];visible(true,desktop);}}
+}
+onMount(()=>{
+ initialized=true;
+ const shortcut=(event:KeyboardEvent)=>{if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==='k'){event.preventDefault();location.assign(url('/search/'));}};
+ document.addEventListener('keydown',shortcut);return()=>{request++;document.removeEventListener('keydown',shortcut);};
 });
-
-$: if (initialized && keywordDesktop) {
-	(async () => {
-		await search(keywordDesktop, true);
-	})();
-}
-
-$: if (initialized && keywordMobile) {
-	(async () => {
-		await search(keywordMobile, false);
-	})();
-}
+$: if(initialized) search(keywordDesktop,true);
+$: if(initialized) search(keywordMobile,false);
 </script>
 
 <!-- search bar for desktop view -->
@@ -152,7 +30,7 @@ $: if (initialized && keywordMobile) {
       dark:bg-white/5 dark:hover:bg-white/10 dark:focus-within:bg-white/10
 ">
     <Icon icon="material-symbols:search" class="absolute text-[1.25rem] pointer-events-none ml-3 transition my-auto text-black/30 dark:text-white/30"></Icon>
-    <input placeholder="{i18n(I18nKey.search)}" bind:value={keywordDesktop} on:focus={() => search(keywordDesktop, true)}
+    <input placeholder="搜索标题" bind:value={keywordDesktop} on:focus={() => search(keywordDesktop, true)}
            class="transition-all pl-10 text-sm bg-transparent outline-0
          h-full w-40 active:w-60 focus:w-60 text-black/50 dark:text-white/50"
     >
@@ -174,7 +52,7 @@ top-20 left-4 md:left-[unset] right-4 shadow-2xl rounded-2xl p-2">
       dark:bg-white/5 dark:hover:bg-white/10 dark:focus-within:bg-white/10
   ">
         <Icon icon="material-symbols:search" class="absolute text-[1.25rem] pointer-events-none ml-3 transition my-auto text-black/30 dark:text-white/30"></Icon>
-        <input placeholder="Search" bind:value={keywordMobile}
+        <input placeholder="搜索标题" bind:value={keywordMobile}
                class="pl-10 absolute inset-0 text-sm bg-transparent outline-0
                focus:w-60 text-black/50 dark:text-white/50"
         >
@@ -189,11 +67,11 @@ top-20 left-4 md:left-[unset] right-4 shadow-2xl rounded-2xl p-2">
                 {item.meta.title}<Icon icon="fa6-solid:chevron-right" class="transition text-[0.75rem] translate-x-1 my-auto text-[var(--primary)]"></Icon>
             </div>
             <div class="transition text-sm text-50">
-                {@html item.excerpt}
+                {item.excerpt}
             </div>
         </a>
     {/each}
-    <a class="block text-sm text-[var(--primary)] px-3 py-2" href={url("/search/") + "?q=" + encodeURIComponent(keywordDesktop || keywordMobile)}>查看全部结果与筛选 →</a>
+    <a class="block text-sm text-[var(--primary)] px-3 py-2" href={url("/search/") + "?q=" + encodeURIComponent(keywordDesktop || keywordMobile)}>高级搜索与全部结果 →</a>
 </div>
 
 <style>

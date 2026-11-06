@@ -14,3 +14,9 @@
 `pnpm build` 执行 Astro 构建和 scripts/build-search.mjs，生成网站与 PDF 共用的 Pagefind 索引。开发服务不生成搜索索引，应以生产构建测试搜索。PDF 附件仍从 public/content/ 登记的 note.json 读取，导入新文件后重新构建即可更新。
 
 组件位置：FullSearch.svelte、widget/Clock.astro、pages/timeline.astro；PDF 跳页由 PdfReader.astro 与 public/assets/pdfjs/viewer.mjs 协作实现。
+
+## 默认标题与高级搜索
+
+导航栏与 /search/ 默认使用独立标题目录 search-titles.json，仅匹配标题，按条目展示；不搜索摘要、标签、正文或 PDF 页。当前目录含 5 篇笔记与 47 项资源。src/utils/title-search.ts 供两个入口共用。
+
+高级搜索默认收起。展开后可以选择“正文与 PDF 全文”范围，并按类型和主题筛选。关闭高级搜索会恢复仅标题并清除筛选。PDF 的 99 页正文索引和命中页跳转保留。标题目录随 scripts/build-search.mjs 构建，不依赖全文索引加载。
