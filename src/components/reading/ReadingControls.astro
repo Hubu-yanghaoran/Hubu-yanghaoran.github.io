@@ -1,0 +1,18 @@
+---
+interface Props {slug:string}
+const {slug}=Astro.props;
+---
+<reading-controls data-slug={slug} class="flex flex-wrap gap-3 mb-5 text-sm">
+<button data-kind="saved" aria-pressed="false" class="btn-regular rounded-lg px-3 py-2">稍后阅读</button><button data-kind="read" aria-pressed="false" class="btn-regular rounded-lg px-3 py-2">标记已读</button><span data-reading-status role="status" class="text-xs text-black/50 dark:text-white/50 self-center"></span>
+</reading-controls>
+<script>
+import {getReading,toggleReading} from './state';
+class ReadingControls extends HTMLElement {
+ controller?:AbortController;
+ connectedCallback(){this.controller?.abort();this.controller=new AbortController();const signal=this.controller.signal;const slug=this.dataset.slug!;
+ const update=()=>{const state=getReading();this.querySelectorAll<HTMLButtonElement>('button[data-kind]').forEach(button=>{const kind=button.dataset.kind as 'saved'|'read';const active=state[kind].includes(slug);button.setAttribute('aria-pressed',String(active));button.textContent=kind==='saved'?(active?'已加入清单':'稍后阅读'):(active?'已读 ✓':'标记已读');});};
+ this.addEventListener('click',event=>{const button=(event.target as Element).closest<HTMLButtonElement>('button[data-kind]');if(!button)return;if(!toggleReading(slug,button.dataset.kind as 'saved'|'read')){const status=this.querySelector('[data-reading-status]');if(status)status.textContent='浏览器未允许保存，标记仅在当前页面有效。';}},{signal});window.addEventListener('yhr-reading-change',update,{signal});window.addEventListener('storage',update,{signal});update();}
+ disconnectedCallback(){this.controller?.abort();}
+}
+if(!customElements.get('reading-controls'))customElements.define('reading-controls',ReadingControls);
+</script>

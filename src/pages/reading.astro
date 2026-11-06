@@ -1,0 +1,22 @@
+---
+import {getCollection} from 'astro:content';
+import MainGridLayout from '../layouts/MainGridLayout.astro';
+import ReadingControls from '../components/reading/ReadingControls.astro';
+const posts=await getCollection('posts',({data})=>!data.draft);
+---
+<MainGridLayout title="阅读清单"><section class="card-base p-6 md:p-9"><h1 class="font-bold text-3xl text-black/90 dark:text-white/90 mb-3">阅读清单</h1><p class="text-sm text-black/50 dark:text-white/50 mb-5">收藏与已读状态保存在当前浏览器。</p>
+<reading-list><label class="text-sm text-black/70 dark:text-white/70">查看 <select class="rounded-lg bg-[var(--card-bg)] p-2" aria-label="阅读状态"><option value="saved">稍后阅读</option><option value="read">已读</option><option value="all">全部资料</option></select></label>
+<p data-empty class="py-6 text-black/50 dark:text-white/50" role="status" hidden>这里还没有内容，可在论文页标记，或切换到全部资料。</p>
+{posts.map(post=><article data-reading-slug={post.slug} class="py-5 border-t border-black/10 dark:border-white/10"><a class="text-lg font-bold text-[var(--primary)]" href={'/posts/'+post.slug+'/'}>{post.data.title}</a><p class="text-sm text-black/60 dark:text-white/60 my-3">{post.data.description}</p><ReadingControls slug={post.slug}/></article>)}
+</reading-list></section></MainGridLayout>
+<script>
+import {getReading} from '../components/reading/state';
+class ReadingList extends HTMLElement {
+ controller?:AbortController;
+ connectedCallback(){this.controller?.abort();this.controller=new AbortController();const signal=this.controller.signal;
+ const update=()=>{const state=getReading();const filter=this.querySelector('select')!.value as 'saved'|'read'|'all';let count=0;this.querySelectorAll<HTMLElement>('[data-reading-slug]').forEach(article=>{article.hidden=filter!=='all'&&!state[filter].includes(article.dataset.readingSlug!);if(!article.hidden)count++;});(this.querySelector('[data-empty]') as HTMLElement).hidden=count>0;};
+ this.addEventListener('change',update,{signal});window.addEventListener('yhr-reading-change',update,{signal});window.addEventListener('storage',update,{signal});update();}
+ disconnectedCallback(){this.controller?.abort();}
+}
+if(!customElements.get('reading-list'))customElements.define('reading-list',ReadingList);
+</script>

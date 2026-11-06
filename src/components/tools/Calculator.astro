@@ -1,0 +1,6 @@
+<study-calculator><form class="space-y-4"><label class="block text-black/70 dark:text-white/70">算式<input name="expression" class="block w-full rounded-xl bg-black/5 dark:bg-white/5 p-3 mt-2" placeholder="例如 (12 + 3) × 4 / 2" autocomplete="off" required maxlength="200" /></label><button class="btn-regular rounded-lg px-4 py-2">计算</button><output class="block text-xl text-[var(--primary)] break-words" aria-live="polite"></output><p class="text-xs text-black/50 dark:text-white/50">用于日常数值计算，采用浮点数运算。</p></form></study-calculator>
+<script>
+import {calculate} from './calculate';
+class StudyCalculator extends HTMLElement{controller?:AbortController;connectedCallback(){this.controller?.abort();this.controller=new AbortController();this.querySelector('form')!.addEventListener('submit',event=>{event.preventDefault();const output=this.querySelector('output')!;try{output.textContent=String(calculate(this.querySelector('input')!.value));}catch(error){output.textContent=(error as Error).message;}},{signal:this.controller.signal});}disconnectedCallback(){this.controller?.abort();}}
+if(!customElements.get('study-calculator'))customElements.define('study-calculator',StudyCalculator);
+</script>

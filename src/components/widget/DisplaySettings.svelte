@@ -1,9 +1,11 @@
 <script lang="ts">
+import { onMount } from "svelte";
 import I18nKey from "@i18n/i18nKey";
 import { i18n } from "@i18n/translation";
 import Icon from "@iconify/svelte";
 import { getDefaultHue, getHue, setHue } from "@utils/setting-utils";
 
+onMount(()=>document.dispatchEvent(new Event("surface-controls-ready")));
 let hue = getHue();
 const defaultHue = getDefaultHue();
 
@@ -17,6 +19,7 @@ $: if (hue || hue === 0) {
 </script>
 
 <div id="display-setting" class="float-panel float-panel-closed absolute transition-all w-80 right-4 px-4 py-4">
+    <div class="mb-5 pb-4 border-b border-black/10 dark:border-white/10"><p class="font-bold text-black/80 dark:text-white/80 mb-3">界面风格</p><div class="flex gap-3"><button type="button" data-surface-choice="fuwari" aria-pressed="true" class="btn-regular rounded-lg px-3 py-2">Fuwari 原版</button><button type="button" data-surface-choice="glass" aria-pressed="false" class="btn-regular rounded-lg px-3 py-2">毛玻璃</button></div><p data-surface-status class="text-xs text-black/50 dark:text-white/50 mt-2" role="status">选择保存在当前浏览器。</p></div>
     <div class="flex flex-row gap-2 mb-3 items-center justify-between">
         <div class="flex gap-2 font-bold text-lg text-neutral-900 dark:text-neutral-100 transition relative ml-3
             before:w-1 before:h-4 before:rounded-md before:bg-[var(--primary)]

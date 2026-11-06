@@ -1,0 +1,9 @@
+---
+import MainGridLayout from '../layouts/MainGridLayout.astro';
+import {tools} from '../components/tools/registry';
+---
+<MainGridLayout title="学习工具箱"><section class="card-base p-6 md:p-9"><h1 class="font-bold text-3xl text-black/90 dark:text-white/90 mb-3">学习工具箱</h1><p class="text-sm text-black/50 dark:text-white/50 mb-6">阅读和学习时随手使用的小工具。</p><study-tools><label class="text-sm text-black/70 dark:text-white/70">选择工具<select aria-label="选择工具" class="bg-[var(--card-bg)] rounded-lg px-3 py-2 ml-3">{tools.map(tool=><option value={tool.id}>{tool.name}</option>)}</select></label>{tools.map(({id,Component})=><section data-tool={id} hidden={id!==tools[0].id} class="mt-6"><Component /></section>)}</study-tools></section></MainGridLayout>
+<script>
+class StudyTools extends HTMLElement{connectedCallback(){this.querySelector('select')!.onchange=()=>{this.querySelectorAll<HTMLElement>('[data-tool]').forEach(tool=>tool.hidden=tool.dataset.tool!==this.querySelector('select')!.value);};}}
+if(!customElements.get('study-tools'))customElements.define('study-tools',StudyTools);
+</script>
