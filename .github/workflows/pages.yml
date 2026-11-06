@@ -27,7 +27,7 @@ jobs:
       - name: Build and index website
         run: |
           set +e
-          node_modules/.bin/astro build > build-output.log 2>&1
+          node_modules/.bin/astro build --verbose > build-output.log 2>&1
           build_status=$?
           cat build-output.log
           if [ "$build_status" -ne 0 ]; then
